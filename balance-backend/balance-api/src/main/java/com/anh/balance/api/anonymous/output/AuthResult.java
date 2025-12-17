@@ -1,0 +1,61 @@
+package com.anh.balance.api.anonymous.output;
+
+import com.anh.balance.domain.entity.Account.Role;
+
+public record AuthResult(
+	    String email,
+	    String name,
+	    Role role,
+	    boolean expired,
+	    String accessToken,
+	    String refreshToken
+	) {
+
+	    public static class Builder {
+	        private String email;
+	        private String name;
+	        private Role role;
+	        private boolean expired;
+	        private String accessToken;
+	        private String refreshToken;
+
+	        public Builder email(String email) {
+	            this.email = email;
+	            return this;
+	        }
+
+	        public Builder name(String name) {
+	            this.name = name;
+	            return this;
+	        }
+
+	        public Builder role(Role role) {
+	            this.role = role;
+	            return this;
+	        }
+
+	        public Builder expired(boolean expired) {
+	            this.expired = expired;
+	            return this;
+	        }
+
+	        public Builder accessToken(String accessToken) {
+	            this.accessToken = accessToken;
+	            return this;
+	        }
+
+	        public Builder refreshToken(String refreshToken) {
+	            this.refreshToken = refreshToken;
+	            return this;
+	        }
+
+	        public AuthResult build() {
+	            return new AuthResult(email, name, role, expired, accessToken, refreshToken);
+	        }
+	    }
+
+	    public static Builder builder() {
+	        return new Builder();
+	    }
+	}
+
