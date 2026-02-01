@@ -1,13 +1,16 @@
 import { Link, useNavigate } from "react-router";
 import FormGroup from "../../ui/form-group";
 import { useForm } from "react-hook-form";
-import type { SignUpForm } from "../../model/dto/anonymous/commons";
+import { signUpSchema, type SignUpForm } from "../../model/dto/anonymous/commons";
 import { signUpRequest } from "../../model/client/anonymous/client";
 import { authStore } from "../../model/store/auth-result.store";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function SignUp() {
 
-    const {register, handleSubmit, formState: {errors}} = useForm<SignUpForm>()
+    const {register, handleSubmit, formState: {errors}} = useForm<SignUpForm>({
+        resolver: zodResolver(signUpSchema)
+    })
     const {setAuth} = authStore()
     const navigate = useNavigate()
 
