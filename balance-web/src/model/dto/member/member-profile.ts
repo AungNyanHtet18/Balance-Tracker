@@ -5,3 +5,18 @@ export type CurrentPlan = {
     expiredAt : string
     expired: boolean
 }
+
+export type MemberDetails = { 
+   name : string
+   email : string
+   phone : string 
+   address : string
+   profileImage : string
+}
+
+export type MemberForm = {
+	name : string
+    address : string
+    phone : string
+	profileImage? : File 
+}

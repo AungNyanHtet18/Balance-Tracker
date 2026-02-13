@@ -21,7 +21,7 @@ export default function MemberSubscriptions() {
     useEffect(() => {
 
         async function load() {
-            const planList = planMaster.plans
+            const planList = planMaster.plans  
             const subscriptionResult = await searchSubscription({
                 page: 0,
                 size: 10

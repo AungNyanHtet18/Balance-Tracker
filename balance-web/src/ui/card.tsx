@@ -5,7 +5,7 @@ export default function Card({title, icon, className, children} : {title?: strin
         <div className={`card ${className}`}>
             <div className="card-body">
                 {title && 
-                    <h5>{icon}{title}</h5>
+                    <h5 className="d-flex gap-2">{icon}{title}</h5>
                 }
 
                 {children}

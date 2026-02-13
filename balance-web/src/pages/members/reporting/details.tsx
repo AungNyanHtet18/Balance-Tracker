@@ -37,7 +37,7 @@ export default function LedgerEntryDetails() {
         }>
             <div className="mb-4 row">
                 <div className="col-auto">
-                    <InputGroup label="Isse At">
+                    <InputGroup label="Issue At">
                         <span className="form-control">{details.issueAt}</span>
                     </InputGroup>
                 </div>

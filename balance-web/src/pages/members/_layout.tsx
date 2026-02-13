@@ -98,6 +98,11 @@ function Navigation() {
                                 </Link>
                             </li>
                             <li>
+                                <Link to="/member/update/info" className="dropdown-item">
+                                    <i className="bi bi-person"></i> User Info
+                                </Link>
+                            </li>
+                            <li>
                                 <hr className="dropdown-divider" />
                             </li>
                             <li>

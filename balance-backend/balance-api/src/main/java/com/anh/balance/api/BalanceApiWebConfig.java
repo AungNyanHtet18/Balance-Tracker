@@ -30,7 +30,9 @@ public class BalanceApiWebConfig implements WebMvcConfigurer{
 	
 	@Value("${app.subscription.slip-directory}")
 	private String slipDirectory;
-
+	@Value("${app.memberinfo.profile-directory}")
+	private String userInfoDirectory;
+	
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
@@ -44,6 +46,10 @@ public class BalanceApiWebConfig implements WebMvcConfigurer{
 		var slips = Paths.get(slipDirectory).toAbsolutePath().normalize();
 		var slipsLocation = "file:%s/".formatted(slips.toString());
 		registry.addResourceHandler("/slips/**").addResourceLocations(slipsLocation);
+		
+		var userInfo = Paths.get(userInfoDirectory).toAbsolutePath().normalize();
+		var userInfoLocation = "file:%s/".formatted(userInfo.toString());
+		registry.addResourceHandler("/userinfo/**").addResourceLocations(userInfoLocation);	
 	}
 	
 	@Bean

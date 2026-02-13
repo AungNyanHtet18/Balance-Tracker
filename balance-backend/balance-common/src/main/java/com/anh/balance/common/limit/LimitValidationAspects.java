@@ -29,13 +29,13 @@ public class LimitValidationAspects {
 	@Autowired
 	private LedgerRepo ledgerRepo;
 	
-	@Pointcut("within(com.jdc.balance.api.*.service.*)")
+	@Pointcut("within(com.anh.balance.api.*.service.*)")
 	public void serviceClasses() {}
 
-	@Pointcut("@annotation(com.jdc.balance.common.limit.LimitEntry)")
+	@Pointcut("@annotation(com.anh.balance.common.limit.LimitEntry)")
 	public void requireEntryLimit() {}
 	
-	@Pointcut("@annotation(com.jdc.balance.common.limit.LimitLedger)")
+	@Pointcut("@annotation(com.anh.balance.common.limit.LimitLedger)")
 	public void requireLedgerLimit() {}
 	
 	@Before("serviceClasses() && requireEntryLimit()")
