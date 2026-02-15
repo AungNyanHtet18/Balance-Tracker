@@ -1,5 +1,6 @@
-import type { ApiResponse } from "../../dto";
+import type { ApiResponse, ModificationResult } from "../../dto";
 import type { AuthResult, SignInForm, SignUpForm } from "../../dto/anonymous/commons";
+import type { ContactUsForm } from "../../dto/anonymous/contact";
 import { handleError } from "../_error_handler";
 import { anonymousClient } from "../_instance";
 
@@ -15,5 +16,10 @@ export async function signUpRequest(form: SignUpForm):ApiResponse<AuthResult> {
 
 export async function refreshToken(token: string):ApiResponse<AuthResult> {
     const response = await anonymousClient().post('/token/refresh', {token : token}).catch(handleError)
+    return response?.data
+}
+
+export async function contactRequest(form: ContactUsForm):ApiResponse<ModificationResult<number>>{
+    const response = await  anonymousClient().post('/contact', form).catch(handleError)
     return response?.data
 }

@@ -4,9 +4,11 @@ import java.util.function.Function;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
+import static com.anh.balance.common.utils.EntityOperations.safeCall;
 import com.anh.balance.api.management.input.MemberSearch;
 import com.anh.balance.api.management.output.MemberListItem;
+import com.anh.balance.common.dto.ModificationResult;
 import com.anh.balance.domain.PageResult;
 import com.anh.balance.domain.entity.Member;
 import com.anh.balance.domain.repo.MemberRepo;
@@ -19,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 @PreAuthorize("hasAuthority('Admin')")
 public class MemberService {
 	
@@ -47,5 +50,15 @@ public class MemberService {
 			cq.select(cb.count(root.get(Member_.id)));
 			return cq;
 		};
+	}
+
+	@Transactional
+	public ModificationResult<Boolean> activate(long memberId) {
+		var member = safeCall(memberRepo.findById(memberId), "Member", memberId);
+		
+		var deleted = member.getAccount().isDeleted();
+		member.getAccount().setDeleted(!deleted);
+		
+		return ModificationResult.success(!deleted);
 	}
 }

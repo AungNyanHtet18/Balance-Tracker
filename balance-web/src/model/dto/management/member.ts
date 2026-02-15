@@ -17,5 +17,6 @@ export type MemberListItem = {
   expiredAt: string;
   planId: number;
   planName: string;
+  deleted: boolean
 };
 

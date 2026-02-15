@@ -4,7 +4,7 @@ import Page from "../../../ui/page";
 import FormGroup from "../../../ui/form-group";
 import NoData from "../../../ui/no-data";
 import { useEffect, useRef, useState } from "react";
-import { searchMember } from "../../../model/client/management/member-client";
+import { banMemberWithId, searchMember } from "../../../model/client/management/member-client";
 import Pagination from "../../../ui/pagination";
 import { useManagementPlan } from "../../../model/provider/management-plan-context";
 import type { PageResult } from "../../../model/dto";
@@ -23,17 +23,27 @@ export default function MemberManagement() {
 
     async function search(form:MemberSearch) {
         const response = await searchMember(form)
+
         if(response) {
             setResult(response)
         }
     }
+
+     async function banMember(memberId: number) {
+         await banMemberWithId(memberId)
+         const members = await searchMember()
+         if(members) {
+             setResult(members)
+         }
+     }
+
 
     return (
         <Page title="Member Management" icon={<i className="bi-people"></i>}>
             <SearchForm selectedPage={selectedPage} selectedSize={selectedSize} search={search} />
 
             <section className="my-3">
-                <ListView list={contents} />
+                <ListView list={contents} banMember={banMember} />
             </section> 
 
             <Pagination pager={pager} pageChange={setSelectedPage} sizeChange={setSelectedSize} />
@@ -86,7 +96,7 @@ function SearchForm({search, selectedPage, selectedSize} : {search:(form:MemberS
     )
 }
 
-function ListView({list} : {list : MemberListItem[]}) {
+function ListView({list, banMember} : {list : MemberListItem[], banMember: (id: number) => void}) {
 
     if(!list.length) {
         return (
@@ -103,6 +113,7 @@ function ListView({list} : {list : MemberListItem[]}) {
                     <th>Expire At</th>
                     <th>Phone</th>
                     <th>Email</th>
+                    <th className="text-center">Ban Member</th>
                 </tr>
             </thead>
             <tbody>
@@ -114,6 +125,9 @@ function ListView({list} : {list : MemberListItem[]}) {
                     <td>{item.expiredAt}</td>
                     <td>{item.phone}</td>
                     <td>{item.email}</td>
+                    <td className="text-center">
+                        <button onClick={() => {banMember(item.id)}} className={`btn  ${item.deleted ? 'btn-primary': 'btn-danger' }`}>{item.deleted ? 'Activate' : 'Ban' } </button>
+                    </td>
                 </tr>
             )}
             </tbody>

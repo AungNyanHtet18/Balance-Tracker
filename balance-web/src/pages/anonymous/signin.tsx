@@ -4,24 +4,36 @@ import { useForm } from "react-hook-form";
 import type { SignInForm } from "../../model/dto/anonymous/commons";
 import { signInRequest } from "../../model/client/anonymous/client";
 import { authStore } from "../../model/store/auth-result.store";
+import { useState } from "react";
 
 export default function SignIn() {
 
     const navigate = useNavigate()
     const {register, handleSubmit, formState : {errors}} = useForm<SignInForm>()
     const {setAuth} = authStore()
+    const [deleted, setDeleted] = useState<boolean>(false)
 
     async function signIn(form : SignInForm) {
         const result = await signInRequest(form)
         setAuth(result)
-        if(result) {
+        
+        if(result?.deleted == true) {
+             setDeleted(result.deleted)
+        }
+
+        else if(result) {
             navigate(`/${result.role.toLocaleLowerCase()}`)
         }
     }
 
     return (
         <div className="w-50">
+
             <h3><i className="bi-unlock"></i> Member Sign In</h3>
+
+            {deleted && 
+                <h5 className="text-danger bg-danger-subtle p-2 rounded rounded-3 border border-danger">Temporarily Banned</h5>
+            }
 
             <form onSubmit={handleSubmit(signIn)} className="mt-4">
                 <FormGroup label="Login ID">

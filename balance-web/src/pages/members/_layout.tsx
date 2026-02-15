@@ -76,6 +76,9 @@ function Navigation() {
                 </Link>
 
                 <ul className="navbar-nav">
+                    <NavItem path="/home" title="Home" icon={<i className="bi bi-house-door"></i>} />
+                    <NavItem path="/about" title="About" icon={<i className="bi bi-info-circle"></i>} />
+                    <NavItem path="/contact" title="Contact" icon={<i className="bi bi-chat-dots"></i>} />
                     <NavItem path="/member/balance" title="Balances" icon={<i className="bi-pie-chart"></i>} />
                     <NavItem path="/member/entry/debit" title="Debit" icon={<i className="bi-bag-dash"></i>} />
                     <NavItem path="/member/entry/credit" title="Credit" icon={<i className="bi-bag-plus"></i>} />

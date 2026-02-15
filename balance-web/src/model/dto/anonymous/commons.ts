@@ -30,6 +30,7 @@ export type SignUpForm = z.infer<typeof signUpSchema>;
 export interface AuthResult {
     email : string
     name : string
+    deleted: boolean
     role : 'Admin' | 'Member'
     accessToken : string
     refreshToken : string

@@ -27,13 +27,24 @@ import MemberSubscriptions from './pages/members/subscriptions/list.tsx'
 import SubscriptionApplication from './pages/members/subscriptions/edit.tsx'
 import MemberSubscriptionDetails from './pages/members/subscriptions/details.tsx'
 import MemberInfoEdit from './pages/members/info/edit.tsx'
+import ContactUs from './pages/landing/contact.tsx'
+import AboutUs from './pages/landing/about.tsx'
+import Home from './pages/landing/home.tsx'
+import LandingLayout from './pages/landing/_layout.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
+        <Route path='/' element={<LandingLayout/>}>
+          <Route index element={<Home/>} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/about' element={<AboutUs />} />
+          <Route path='/contact' element={<ContactUs />} />
+        </Route>
+
         <Route path='/' element={<AnonymousLayout />}>
-          <Route index element={<SignIn />} />
+          {/* <Route index element={<SignIn />} /> */}
           <Route path='signin' element={<SignIn />} />
           <Route path='signup' element={<SignUp />} />
         </Route>

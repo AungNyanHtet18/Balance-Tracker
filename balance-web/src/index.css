@@ -1,3 +1,17 @@
+:root{
+  --primary-color:  #8f23aa; 
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+
+
+label{
+     color: var(--primary-color);
+}
+
 .cover-icon {
     font-size: 16rem;
     color: white;
@@ -9,4 +23,33 @@
 
 .pager-link {
     width: 2.6rem;
+}
+
+
+.color-type{ 
+    color: var(--primary-color);
+}
+
+
+
+/*Button */
+.btn-purple {
+  color: white;
+  background-color: var(--primary-color); 
+  border: 1px solid var(--primary-color);
+  transition: all 0.2s ease;
+}
+
+.btn-purple:hover {
+  background-color: white;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+
+
+
+/* Contact Us page */
+.bottom-border-size {
+    border-bottom-width: 2px !important;
 }

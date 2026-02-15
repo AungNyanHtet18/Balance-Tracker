@@ -6,7 +6,7 @@ export default function MemberImage({src} : {src? : string | File}) {
     
     if(!src) {
         return  (
-            <img src={MemberSrc} className='img-fluid' alt="There is no upload photo" />
+            <img src={MemberSrc} className='img-fluid' alt="There is no upload photo"  style={{width: 390, height: 290, objectFit: 'cover'}}/>
         )
     }
 
@@ -17,7 +17,7 @@ export default function MemberImage({src} : {src? : string | File}) {
     }
     
     return (
-        <img src={URL.createObjectURL(src)} className='img-fluid' alt="Member Photo" />
+        <img src={URL.createObjectURL(src)} className='img-fluid' alt="Member Photo" style={{width: 390, height: 'auto', objectFit: 'cover'}}/>
     )
 }
 
@@ -46,6 +46,6 @@ function SecuredImage({src} : {src : string}) {
     }
 
     return (
-        <img src={url} className='img-fluid' alt={src} />
+        <img src={url} className='img-fluid' alt={src} style={{width: 390, height: 'auto', objectFit: 'cover'}} />
     )
 }

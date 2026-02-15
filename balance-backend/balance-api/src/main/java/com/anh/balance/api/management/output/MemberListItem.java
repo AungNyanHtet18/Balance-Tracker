@@ -20,7 +20,8 @@ public record MemberListItem(
 		LocalDate enabledAt,
 		LocalDate expiredAt,
 		int planId,
-		String planName) {
+		String planName,
+		boolean deleted) {
 
 	public static void select(CriteriaQuery<MemberListItem> cq, Root<Member> root) {
 		cq.multiselect(
@@ -32,8 +33,9 @@ public record MemberListItem(
 			root.get(Member_.enabledDate),
 			root.get(Member_.account).get(Account_.expiredAt),
 			root.get(Member_.subscription).get(Subscription_.plan).get(SubscriptionPlan_.id),
-			root.get(Member_.subscription).get(Subscription_.plan).get(SubscriptionPlan_.name)
-		);
+			root.get(Member_.subscription).get(Subscription_.plan).get(SubscriptionPlan_.name),
+			root.get(Member_.account).get(Account_.deleted)
+			);
 	}
 
 }

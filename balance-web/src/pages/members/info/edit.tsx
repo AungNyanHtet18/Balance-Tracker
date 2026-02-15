@@ -23,6 +23,8 @@ export default function MemberInfoEdit() {
                reset({
                   name: response.name,
                   phone: response.phone,
+                  gender: response.gender,
+                  dob: response.dob,
                   address: response.address
                })
 
@@ -30,7 +32,6 @@ export default function MemberInfoEdit() {
                setMemberPhoto(response.profileImage)
            }
 
-           console.log(response);
        }
         load()
     }, [reset])
@@ -63,7 +64,7 @@ export default function MemberInfoEdit() {
                  
                  <input ref={fileSelectRef} type="file" className="d-none" onChange={changeSelectedFile}/>
                  
-                 <div className="col-8">
+                 <div className="col-7">
                     <Card icon={<i className="bi bi-person-circle"></i>} title="Member Data">
                          <FormGroup label="Email" className="mb-3">
                               <input type="text" readOnly={true} className="form-control" value={email} />
@@ -77,13 +78,25 @@ export default function MemberInfoEdit() {
                               <input type="text" className="form-control" {...register('phone',{required: true})} />
                          </FormGroup>
 
+                          <FormGroup label="Gender" className="mb-3">
+                              <select {...register('gender',{required: true})} className="form-select">
+                                 <option value="">Select Gender</option>  
+                                 <option value={'Male'}>Male</option>
+                                 <option value={'Female'}>Female</option>
+                              </select>
+                         </FormGroup>
+
+                         <FormGroup label="Date of Birth" className="mb-3">
+                              <input type="date" className="form-control" {...register('dob',{required: true})} />
+                         </FormGroup>
+
                          <FormGroup label="Address" className="mb-3">
                               <textarea rows={4} className="form-control" {...register('address',{required: true})} />
                          </FormGroup>
                     </Card>
                  </div>
 
-                 <div className="col-3">
+                 <div className="col-4">
                     <Card icon={<i className="bi bi-camera2"></i>} title="Member Data">
                        <MemberImage src={memberPhoto} />
 

@@ -1,7 +1,6 @@
 package com.anh.balance.domain.entity;
 
 import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -19,6 +18,7 @@ public class Account {
 	private String password;
 	@Column(nullable = false)
 	private Role role;
+	private boolean deleted = false;
 	
 	private LocalDate expiredAt;
 	

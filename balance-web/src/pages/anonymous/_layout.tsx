@@ -9,7 +9,7 @@ export default function AnonymousLayout() {
                 <i className="bi-bar-chart cover-icon"></i>
 
                 <h1 className="text-white">My Balance</h1>
-                <h5 className="text-white">Final project for One Stop Bath 12</h5>
+                <h5 className="text-white">Welcome to my balance app</h5>
             </section>
 
             <main className="w-50 d-flex flex-column justify-content-center align-items-center">

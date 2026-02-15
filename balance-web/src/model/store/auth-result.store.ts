@@ -13,7 +13,7 @@ export const authStore = create(persist<AuthStoreType>(
         setAuth: (auth) => set({auth: auth})
    }),
    {
-     name: 'com.jdc.balance.user',
+     name: 'com.anh.balance.user',
      storage: createJSONStorage(() => localStorage)
    }
 ))

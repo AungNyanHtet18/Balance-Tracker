@@ -9,7 +9,9 @@ export type CurrentPlan = {
 export type MemberDetails = { 
    name : string
    email : string
-   phone : string 
+   phone : string
+   gender : 'Male' | 'Female' 
+   dob: string
    address : string
    profileImage : string
 }
@@ -18,5 +20,7 @@ export type MemberForm = {
 	name : string
     address : string
     phone : string
+    gender : 'Male' | 'Female'
+    dob: string
 	profileImage? : File 
 }

@@ -7,6 +7,7 @@ public record AuthResult(
 	    String name,
 	    Role role,
 	    boolean expired,
+	    boolean deleted,
 	    String accessToken,
 	    String refreshToken
 	) {
@@ -16,6 +17,7 @@ public record AuthResult(
 	        private String name;
 	        private Role role;
 	        private boolean expired;
+	        private boolean deleted;
 	        private String accessToken;
 	        private String refreshToken;
 
@@ -38,6 +40,11 @@ public record AuthResult(
 	            this.expired = expired;
 	            return this;
 	        }
+	        
+	        public Builder deleted(boolean deleted) {
+	            this.deleted = deleted;
+	            return this;
+	        }
 
 	        public Builder accessToken(String accessToken) {
 	            this.accessToken = accessToken;
@@ -50,7 +57,7 @@ public record AuthResult(
 	        }
 
 	        public AuthResult build() {
-	            return new AuthResult(email, name, role, expired, accessToken, refreshToken);
+	            return new AuthResult(email, name, role, expired, deleted, accessToken, refreshToken);
 	        }
 	    }
 

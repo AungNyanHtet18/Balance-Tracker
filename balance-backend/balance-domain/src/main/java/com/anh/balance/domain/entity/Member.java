@@ -31,6 +31,12 @@ public class Member extends AuditableEntity{
 	private String phone;
 	private String profileImage;
 	private String address;
+	private Gender gender;
+	private LocalDate dob;
+	
+	public enum Gender{
+		Male, Female
+	}
 	
 	@ManyToOne
 	private Subscription subscription;
