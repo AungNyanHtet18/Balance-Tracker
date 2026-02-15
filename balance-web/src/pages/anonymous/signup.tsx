@@ -24,7 +24,7 @@ export default function SignUp() {
 
     return (
         <div className="w-50">
-            <h3>Sign Up</h3>
+            <h3><i className="bi-unlock"></i> Sign Up</h3>
 
             <form onSubmit={handleSubmit(signUp)} className="mt-4">
                 <FormGroup label="Name">

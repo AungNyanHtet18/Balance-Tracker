@@ -7,11 +7,6 @@ body {
   font-weight: 500;
 }
 
-
-label{
-     color: var(--primary-color);
-}
-
 .cover-icon {
     font-size: 16rem;
     color: white;

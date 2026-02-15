@@ -31,6 +31,7 @@ import ContactUs from './pages/landing/contact.tsx'
 import AboutUs from './pages/landing/about.tsx'
 import Home from './pages/landing/home.tsx'
 import LandingLayout from './pages/landing/_layout.tsx'
+import ContactUsManagement from './pages/management/contact/list.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -52,6 +53,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path='/admin' element={<AdminLayout />}>
           <Route index element={<DashBoard />} />
           <Route path='members' element={<MemberManagement />} />
+          <Route path='contact' element={<ContactUsManagement/>} />
           <Route path='subscriptions' element={<Subscriptions />} />
           <Route path='subscriptions/:code' element={<SubscriptionDetails />} />
           <Route path='master/plan' element={<SubscriptionPlanManagement />} />

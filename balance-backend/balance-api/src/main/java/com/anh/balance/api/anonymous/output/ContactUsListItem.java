@@ -12,6 +12,7 @@ public record ContactUsListItem(
 	Long id,
 	String fullName,
 	String email,
+	String phone,
 	String message,
 	LocalDateTime createdAt) {
 
@@ -20,6 +21,7 @@ public record ContactUsListItem(
 		   root.get(ContactUs_.id),
 		   root.get(ContactUs_.fullName),
 		   root.get(ContactUs_.email),
+		   root.get(ContactUs_.phone),
 		   root.get(ContactUs_.message),
 		   root.get(ContactUs_.createdAt));
 		

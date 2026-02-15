@@ -7,6 +7,7 @@ public record ContactUsForm(
 	String fullName,
 	@NotBlank(message = "Please enter your email.")
 	String email,
+	String phone,
 	@NotBlank(message = "Please enter your message.")
 	String message) {
 

@@ -23,6 +23,7 @@ public class ContactUsService {
 		var contactUs= new ContactUs();
 		contactUs.setFullName(form.fullName());
 		contactUs.setEmail(form.email());
+		contactUs.setPhone(form.phone());		
 		contactUs.setMessage(form.message());
 		contactUs.setCreatedAt(LocalDateTime.now());
 		

@@ -67,6 +67,11 @@ function Navigation() {
                         </Link>
                     </li>
                     <li className="nav-item">
+                        <Link to="/admin/contact" className="nav-link">
+                            <i className="bi bi-chat-dots"></i> Contact
+                        </Link>
+                    </li>
+                    <li className="nav-item">
                         <Link to="/admin/members" className="nav-link">
                             <i className="bi-people"></i> Members
                         </Link>

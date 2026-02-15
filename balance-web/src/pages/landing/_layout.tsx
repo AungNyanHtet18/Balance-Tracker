@@ -1,5 +1,6 @@
 import { Link, Outlet } from "react-router";
 import NavItem from "../../ui/nav-item";
+import { useState } from "react";
 
 export default function LandingLayout() {
      return (
@@ -15,7 +16,7 @@ export default function LandingLayout() {
 
 
 function Navigation() {
-
+   
     return (
         <nav className="navbar bg-light navbar-expand shadow-sm">
             <div className="container-fluid">
@@ -24,8 +25,8 @@ function Navigation() {
                 </Link>
 
                 <ul className="navbar-nav">
-                    <NavItem path="/home" title="Home" icon={<i className="bi bi-house-door"></i>} />
-                    <NavItem path="/about" title="About" icon={<i className="bi bi-info-circle"></i>} />
+                    <NavItem path="/home" title="Home" icon={<i className="bi bi-house-door"></i>}  />
+                    <NavItem path="/about" title="About" icon={<i className="bi bi-info-circle"></i>}  />
                     <NavItem path="/contact" title="Contact" icon={<i className="bi bi-chat-dots"></i>} />
                     <NavItem path="/signup" title="Sign Up" icon={<i className="bi bi-person-plus"></i>} />
                 </ul>

@@ -23,7 +23,8 @@ public class ContactUs {
 	@Column(nullable = false)
 	private String email;
 	
-	@Lob
+	private String phone;
+	
 	@Column(nullable = false)
 	private String message;
 	
