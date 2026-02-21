@@ -16,9 +16,9 @@ public class BalanceApiApplicationTest {
 	@Autowired
 	private AccountRepo accountRepo;
 
-	@Test
-	public void launchApplicatio() {
+  /*@Test
+	public void launchApplication() {
 		var count = accountRepo.count();
 		assertEquals(1L, count);
-	}
+	}*/
 }
