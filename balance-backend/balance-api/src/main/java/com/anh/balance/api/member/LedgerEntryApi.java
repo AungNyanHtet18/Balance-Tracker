@@ -36,6 +36,7 @@ public class LedgerEntryApi {
 			LedgerEntrySearch search, 
 			@RequestParam(defaultValue = "0") int page, 
 			@RequestParam(defaultValue = "10") int size) {
+		
 		return service.search(username, search, page, size);
 	}
 	

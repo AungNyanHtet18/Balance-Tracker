@@ -4,7 +4,7 @@ export default function FormGroup({label, className, labelClassName, children}:{
     return (
         <div className={className}>
             {label && 
-                <label className={`form-label ${labelClassName}`}>{label}</label>
+                <label className={`form-label fw-semibold ${labelClassName}`} style={{color: '#8f23aa'}}>{label}</label>
             }
             {children}
         </div>

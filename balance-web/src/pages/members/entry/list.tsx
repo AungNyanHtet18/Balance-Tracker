@@ -126,7 +126,7 @@ function ListView({list} : {list : LedgerEntryListItem[]}) {
 
             <tbody>
             {list.map(item => 
-                <tr key={item.id.code}>
+                <tr key={item.id.requestId}>
                     <td>{item.issueAt}</td>
                     <td>{item.id.code}</td>
                     <td>{item.ledgerName}</td>

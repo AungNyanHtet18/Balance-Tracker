@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from "react-router"
+import { Link, matchPath, Outlet, useLocation, useNavigate } from "react-router"
 import { authStore } from "../../model/store/auth-result.store"
 import ManagementPlanProvider from "../../model/provider/management-plan-provider"
 import ClientErrorMessage from "../../ui/client-error-message"
@@ -6,12 +6,19 @@ import { useEffect, useState } from "react"
 import { getYears } from "../../model/client/management/dashboard-client"
 import { BusinessYearContext } from "../../model/provider/business-years-context"
 
+const fullWidthRoutes: string[] = ['/admin/master/payment/edit','/admin/master/payment/:id','/admin/master/plan/edit','/admin/master/plan/:id'];
+
 export default function AdminLayout() {
+
+    const  location = useLocation();
+    const fullWidthPage = fullWidthRoutes.some(route => 
+        matchPath(route, location.pathname));
+
     return (
         <>
             <Navigation />
 
-            <main className="container-fluid mt-3">
+            <main className={fullWidthPage ? '' : 'container-fluid mt-3'}>
                 <ManagementPlanProvider>
                     <BusinessYearContextProvider>
                         <Outlet />
@@ -54,7 +61,7 @@ function Navigation() {
     }
 
     return (
-        <nav className="navbar navbar-expand navbar-light bg-light shadow-sm">
+        <nav className="navbar navbar-expand navbar-light bg-light shadow-sm sticky-top">
             <div className="container-fluid">
                 <Link className="navbar-brand" to='/admin'>
                     <i className="bi-house"></i> Balance Admin
