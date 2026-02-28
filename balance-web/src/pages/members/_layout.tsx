@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from "react-router"
+import { Link, matchPath, Outlet, useLocation, useNavigate } from "react-router"
 import NavItem from "../../ui/nav-item"
 import { authStore } from "../../model/store/auth-result.store"
 import MemberLedgerProvider from "../../model/provider/member-ledger-provider"
@@ -10,14 +10,23 @@ import { useEffect, useState } from "react"
 import { getYears } from "../../model/client/member/dashboard-client"
 import { BusinessYearContext } from "../../model/provider/business-years-context"
 
+const fullWidthRoutes: string[] = ['/member/entry/debit/edit'];
+
+
 export default function MembersLayout() {
+
+    const  location = useLocation();
+    const fullWidthPage = fullWidthRoutes.some(route => 
+        matchPath(route, location.pathname));
+
+
     return (
         <>
             <Navigation />
 
             <MasterDataProvider>
                 <BusinessYearContextProvider>
-                    <main className="container-fluid mt-3 pb-3">
+                    <main className={fullWidthPage ? '' : 'container-fluid mt-3 pb-3'}>
                         <Outlet />
                     </main>
                 </BusinessYearContextProvider>

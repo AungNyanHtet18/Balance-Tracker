@@ -84,7 +84,7 @@ export default function EditPaymentMethod() {
 
                             <div className="form-check mb-3">
                                 <input id="active" type="checkbox" className="form-check-input" {...register('active')} />
-                                <label htmlFor="active" className="form-check-label">{watch('active') ? "Active" : "Pending"}</label>
+                                <label htmlFor="active" className="form-check-label color-type fw-bold">{watch('active') ? "Active" : "Pending"}</label>
                             </div>
 
                             <div className="text-center">

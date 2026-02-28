@@ -62,7 +62,7 @@ export default function EditSubscriptionPlan() {
               <i className="bi bi-ui-checks text-white" style={{fontSize: '80px'}}></i>
            </div>
 
-            <div className="position-absolute border border-1  rounded-4 shadow-sm  w-75 p-3 bg-white" style={{top: '21%', right: '12%', height: '390px'}}>
+            <div className="position-absolute border border-1  rounded-4 shadow-sm  w-75 p-3 bg-white" style={{top: '21%', right: '12%', height: '430px'}}>
                <h5 className="fw-bold text-end color-type"><i className="bi bi-plus-circle me-1"></i>{ planId ? 'Edit' : 'Create' } Subcription Plan </h5>
                 
                 <form onSubmit={handleSubmit(save)}>
@@ -110,7 +110,7 @@ export default function EditSubscriptionPlan() {
 
                     <div className="mb-3 form-check">
                         <input {...register('active')} type="checkbox" className="form-check-input" id="status" />
-                        <label htmlFor="status" className="form-check-label">{watch('active') ? "Active" : "Pending"}</label>
+                        <label htmlFor="status" className="form-check-label color-type fw-bold">{watch('active') ? "Active" : "Pending"}</label>
                     </div>
 
                     <div className="text-end">
