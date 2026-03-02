@@ -41,7 +41,7 @@ export default function ModalDialog({title, action, children} : {title : string,
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title">{title}</h5>
+                        <h5 className="modal-title color-type fw-bold">{title}</h5>
                     </div>
 
                     <div className="modal-body">
@@ -49,12 +49,12 @@ export default function ModalDialog({title, action, children} : {title : string,
                     </div>
 
                     <div className="modal-footer">
-                        <button onClick={() => setShow(false)} type="button" className="btn btn-outline-dark">
+                        <button onClick={() => setShow(false)} type="button" className="btn btn-dark">
                             <i className="bi-x"></i> Close
                         </button>
 
                         {action && 
-                            <button onClick={action} className="btn btn-dark ms-2" type="button">
+                            <button onClick={action} className="btn btn-purple ms-2" type="button">
                                 <i className="bi-save"></i> Save
                             </button>
                         }

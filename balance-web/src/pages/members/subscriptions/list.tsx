@@ -56,11 +56,11 @@ export default function MemberSubscriptions() {
     }, [setPlans, setHistory, planMaster])
 
     return (
-        <Page title="Subscriptions" icon={<i className="bi-flag"></i>}>
+        <Page title="Subscriptions" icon={<i className="bi-box-seam"></i>}>
             
             {applied && 
-            <div className="alert alert-info">
-                You had applied {applied.planName} plan. Please wait for approvment.
+            <div className="py-2 px-3 rounded-3 text-white d-flex mb-3" style={{backgroundColor: "#8f23aa"}}>
+                <h5>You had applied {applied.planName} plan. Please wait for approvment.</h5>
             </div>
             }
 
@@ -91,7 +91,7 @@ function AvailablePlans({applied, plans} : {applied : boolean, plans : Available
 
     return (
         <>
-            <h5 className="mb-2"><i className="bi-cart"></i> Available Plans</h5>
+            <h5 className="color-type mb-2"><i className="bi bi-bag-dash-fill"></i> Available Plans</h5>
 
             <div className="row row-cols-3">
             {plans.map(plan => 
@@ -108,10 +108,10 @@ function AvailablePlans({applied, plans} : {applied : boolean, plans : Available
                         <div className="d-flex justify-content-between align-items-center mt-3">
                             <div>
                             {plan.current && 
-                                <span className="btn btn-outline-secondary"><i className="bi-check-circle"></i> Current Plan</span>
+                                <span className="btn btn-outline-dark"><i className="bi-check-circle"></i> Current Plan</span>
                             }
                             </div>
-                            <Link to={`/member/subscription/${plan.planId}`} className={`btn btn-secondary ${plan.defaultPlan || applied ? 'disabled' : ''}`} >
+                            <Link to={`/member/subscription/${plan.planId}`} className={`btn btn-purple ${plan.defaultPlan || applied ? 'disabled default-plan fw-semibold' : ''}`} >
                                 <i className="bi-cart-plus"></i> Subscribe
                             </Link>
                         </div>
@@ -126,7 +126,7 @@ function AvailablePlans({applied, plans} : {applied : boolean, plans : Available
 function SubscriptionHistory({history} : {history: SubscriptionListItem[]}) {
     return (
         <>
-            <h5 className="mb-2"><i className="bi-calendar"></i> Subscription History</h5>
+            <h5 className="color-type mb-2"><i className="bi bi-calendar-check-fill"></i> Subscription History</h5>
 
             <table className="table table-striped table-bordered table-hover">
                 <thead>
@@ -149,7 +149,7 @@ function SubscriptionHistory({history} : {history: SubscriptionListItem[]}) {
                         <td>{item.status}</td>
                         <td>{item.statusChangeAt}</td>
                         <td className="text-center">
-                            <Link to={`/member/subscription/details/${item.id.code}`} className="icon-link">
+                            <Link to={`/member/subscription/details/${item.id.code}`} className="icon-link color-type">
                                 <i className="bi-arrow-right"></i>
                             </Link>
                         </td>

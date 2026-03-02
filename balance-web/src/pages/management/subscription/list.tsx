@@ -68,7 +68,7 @@ function SearchForm({page = 0, size = 10, onSearch} : {page: number, size: numbe
                         <a href="#" onClick={e => {
                             e.preventDefault()
                             setStatus(item)
-                        }} className={`nav-link ${status == item ? 'active text-light ' : 'append-nav-type'}`}>{item}</a>
+                        }} className={`nav-link ${status == item ? 'active' : 'append-nav-type'}`}>{item}</a>
                     </li>
                 )}
             </ul>

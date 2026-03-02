@@ -61,7 +61,7 @@ function SearchForm({page, size, onSearch} : {page: number, size : number, onSea
                 <input {...register('to')} type="date" className="form-control" />
             </FormGroup>
             <div className="col btn-wrapper">
-                <button type="submit" className="btn btn-secondary">
+                <button type="submit" className="btn btn-dark">
                     <i className="bi-search"></i> Search
                 </button>
             </div>
@@ -103,7 +103,7 @@ function ListView({list} : {list : BalanceReportListItem[]}) {
                     <td className="text-end">{item.credit.toLocaleString()}</td>
                     <td className="text-end">{item.balance.toLocaleString()}</td>
                     <td className="text-center">
-                        <Link to={`/member/balance/${item.id.requestId}`} className="icon-link">
+                        <Link to={`/member/balance/${item.id.requestId}`} className="icon-link color-type">
                             <i className="bi-arrow-right"></i>
                         </Link>
                     </td>

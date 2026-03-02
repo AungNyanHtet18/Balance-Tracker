@@ -91,7 +91,7 @@ export default function LedgerEntryEdit() {
     const itemArray = useWatch({control : control, name : 'items'})
 
     return (
-        <div className="w-100 px-4 py-3">
+        <div className="w-100 px-4 py-3 bg-light">
            <div className="d-flex mb-3">
                 <h4 className="fw-bold color-type"><i className="bi-pencil-square me-2"></i>
                     {query.get('id') ? "Edit" : "Create"} {ledgerType} Entry

@@ -110,11 +110,11 @@ function SearchForm({onSearch, setEditData} : {
             </FormGroup>
 
             <div className="col btn-wrapper">
-                <button type="submit" className="btn btn-secondary">
+                <button type="submit" className="btn btn-dark">
                     <i className="bi-search"></i> Search
                 </button>
 
-                <button onClick={addNew} type="button" className="btn btn-outline-secondary ms-2">
+                <button onClick={addNew} type="button" className="btn btn-purple ms-2">
                     <i className="bi-plus"></i> Add New
                 </button>
             </div>
@@ -158,7 +158,7 @@ function ListView({list, setEditData} : {list: LedgerListItem[], setEditData: (d
                             e.preventDefault()
                             setEditData(item)
                             setShow(true)
-                        }} className="icon-link">
+                        }} className="icon-link color-type">
                             <i className="bi-pencil"></i>
                         </a>
                     </td>

@@ -31,7 +31,7 @@ export default function LedgerEntryDetails() {
     return (
         <Page icon={<i className={details.type == 'Credit' ? 'bi-bag-plus' : 'bi-bag-dash'}></i>} title={`${details.id.requestId} : ${details.ledgerName}`} actions={
             details.canEdit && 
-            <Link to={`/member/entry/${details.type.toLocaleLowerCase()}/edit?id=${details.id.requestId}`} className="btn btn-secondary">
+            <Link to={`/member/entry/${details.type.toLocaleLowerCase()}/edit?id=${details.id.requestId}`} className="btn btn-purple">
                 <i className="bi-pencil"></i> Edit Entry
             </Link>
         }>

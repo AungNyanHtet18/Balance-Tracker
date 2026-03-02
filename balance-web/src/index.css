@@ -2,6 +2,10 @@
   --primary-color:  #8f23aa; 
 }
 
+table  th {
+  color: var(--primary-color) !important;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
@@ -24,6 +28,12 @@ body {
 .color-type{ 
     color: var(--primary-color);
 }
+
+/*Navbar */
+.nav-border-color {
+   border-bottom-color: var(--primary-color) !important;
+}
+
 
 
 /*Button */
@@ -55,9 +65,17 @@ body {
 }
 
 
+
+/* Subcription Plan List */
+.default-plan {
+  color: var(--primary-color) !important;
+}
+
+
+/* Admin */
 /*Sucription Nav Link */
 .append-nav-type {
-  color: #8f23aa;   
+  color: #000000;   
 
 }
 
@@ -68,5 +86,5 @@ body {
 }
 
 .append-nav  .active {
-  background: linear-gradient(135deg, #d148f3, #f745b2);
+   color: #8f23aa !important;
 }

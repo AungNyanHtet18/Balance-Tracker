@@ -91,11 +91,11 @@ function SearchForm({type, page, size, onSearch} : {type: LedgerType, page : num
             </FormGroup>
 
             <div className="col btn-wrapper">
-                <button className="btn btn-secondary" type="submit">
+                <button className="btn btn-dark" type="submit">
                     <i className="bi-search"></i> Search
                 </button>
 
-                <Link to={`/member/entry/${type.toLowerCase()}/edit`} className="btn btn-outline-secondary ms-2">
+                <Link to={`/member/entry/${type.toLowerCase()}/edit`} className="btn btn-purple ms-2">
                     <i className="bi-plus"></i> Add New
                 </Link>
             </div>
@@ -133,7 +133,7 @@ function ListView({list} : {list : LedgerEntryListItem[]}) {
                     <td>{item.particular}</td>
                     <td className="text-end">{item.amount.toLocaleString()}</td>
                     <td className="text-center">
-                        <Link to={`/member/balance/${item.id.requestId}`} className="icon-link">
+                        <Link to={`/member/balance/${item.id.requestId}`} className="icon-link color-type">
                             <i className="bi-arrow-right"></i>
                         </Link>
                     </td>

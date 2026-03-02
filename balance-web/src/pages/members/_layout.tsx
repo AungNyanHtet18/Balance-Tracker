@@ -10,7 +10,7 @@ import { useEffect, useState } from "react"
 import { getYears } from "../../model/client/member/dashboard-client"
 import { BusinessYearContext } from "../../model/provider/business-years-context"
 
-const fullWidthRoutes: string[] = ['/member/entry/debit/edit','/member/subscription/:id'];
+const fullWidthRoutes: string[] = ['/member/entry/credit/edit','/member/entry/debit/edit','/member/subscription/:id'];
 
 
 export default function MembersLayout() {
@@ -92,8 +92,7 @@ function Navigation() {
                     <NavItem path="/member/entry/debit" title="Debit" icon={<i className="bi-bag-dash"></i>} />
                     <NavItem path="/member/entry/credit" title="Credit" icon={<i className="bi-bag-plus"></i>} />
                     <NavItem path="/member/ledger" title="Ledgers" icon={<i className="bi-tags"></i>} />
-                    <li className="nav-item">
-                    </li>
+                    
                     <li className="nav-item dropdown">
                         <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown" >
                             <i className="bi-person"></i> {auth?.name}
