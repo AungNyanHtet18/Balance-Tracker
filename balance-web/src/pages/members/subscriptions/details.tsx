@@ -21,7 +21,6 @@ export default function MemberSubscriptionDetails() {
         async function load() {
             if(code) {
                 const response = await findSubscriptionById(code)
-                console.log(response)
                 setDetails(response)
             }
         }
@@ -35,7 +34,7 @@ export default function MemberSubscriptionDetails() {
     }
 
     return (
-        <Page icon={<i className="bi-cart"></i>} title="Subscription">
+        <Page className="p-3 bg-light" icon={<i className="bi-credit-card"></i> } title="Subscription Details">
             <div className="row">
                 <div className="col-3">
                     <Card className="mb-4" title="New Plan" icon={<i className="bi-shield-check me-2"></i>}>
@@ -43,13 +42,13 @@ export default function MemberSubscriptionDetails() {
                             <Information label="Plan" value={details.plan.name} />
                             <Information label="Applied At" value={details.currentAppliedAt} />
                             <Information label="Start At" value={details.currentStartAt || NOT_YET} />
-                            <Information label="Expired At" value={details.currentStartAt || NOT_YET} />
+                            <Information label="Expired At" value={details.currentExpiredAt || NOT_YET} />
                             <Information label="Extension" value={usageValue(details.usage)} />
                         </div>
                     </Card>
 
                     {details.previousPlan && 
-                        <Card className="mb-4" title="Previous Plan" icon={<i className="bi-shield me-2"></i>}>
+                        <Card className="mb-4" title="Previous Plan" icon={<i className="bi-clock-history me-2"></i>}>
                             <div className="list-group-item mt-4 mb-2">
                                 <Information label="Plan" value={details.previousPlan.name} />
                                 <Information label="Applied At" value={details.prevAppliedAt || ''} />
@@ -62,7 +61,7 @@ export default function MemberSubscriptionDetails() {
                 </div>
 
                 <div className="col">
-                    <Card title="Subscription Information" icon={<i className="bi-cart me-2"></i>}>
+                    <Card title="Subscription Information" icon={<i className="bi bi-cart-check-fill"></i>} className="pb-3">
                         <Information label="Payment" value={details.payment || ''} />
                         <Information label="Account No" value={details.accountNo || ''} />
                         <Information label="Account Name" value={details.accountName || ''} />
@@ -70,6 +69,13 @@ export default function MemberSubscriptionDetails() {
                         <Information label="Status" value={details.status || ''} />
                         <Information label="Change At" value={details.statusChangeAt || ''} />
                         <Information label="Change Reason" value={details.reason || ''} />
+                        <Information label="Period" value={details.currentStartAt && details.currentExpiredAt ? 
+                                `${new Date(details.currentStartAt).toLocaleDateString()} - ${new Date(details.currentExpiredAt).toLocaleDateString()}` : 'Not Defined'} />
+
+                        <Information label="Member ID" value={details.id.memberId} />
+                        <Information label="Plan Code" value={details.id.code} />
+                       
+
                     </Card>
                 </div>
 
