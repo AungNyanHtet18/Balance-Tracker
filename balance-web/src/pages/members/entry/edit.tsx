@@ -92,16 +92,15 @@ export default function LedgerEntryEdit() {
 
     return (
         <div className="w-100 px-4 py-3">
-           <div className="d-flex justify-content-between align-items-center mb-3">
+           <div className="d-flex mb-3">
                 <h4 className="fw-bold color-type"><i className="bi-pencil-square me-2"></i>
                     {query.get('id') ? "Edit" : "Create"} {ledgerType} Entry
                 </h4>
-                
            </div>
           
            <form onSubmit={handleSubmit(save)}>
                 <div className="d-flex justify-content-between align-items-start gap-4">
-                    <div className="w-25  rounded-3 shadow py-3" style={{height: '400px'}}>
+                    <div className="w-25  rounded-3 border border-2 py-3" style={{height: '420px'}}>
                         <h5 className="color-type text-center fw-bold mb-4"><i className="bi-plus-circle me-1"></i>Ledger Entry</h5>
 
                         <FormGroup className="px-3 mb-4" label="Ledger">
@@ -122,13 +121,13 @@ export default function LedgerEntryEdit() {
 
                     <div className="w-75 d-flex flex-column gap-4">   
                         <div className="w-100 d-flex align-items-start gap-4">   
-                            <div className="w-50 border border-1 shadow rounded-3 p-3 bg-light">
+                            <div className="w-50 border border-1 shadow rounded-3 p-3">
                                 <h5 className="fw-bold mb-3 color-type text-center">
                                     <i className="bi-compass me-1"></i>Ledger Entry Guide</h5>
 
                                 <div className="mb-3">
-                                    <span className="fw-bold">Entry Type:</span>
-                                    <span className="ms-2 badge bg-success">{ledgerType}</span>
+                                    <span className="fw-bold color-type">Entry Type:</span>
+                                    <span className="ms-2 badge" style={{background: 'linear-gradient(80deg, #d847fc, #e08cc0)'}}>{ledgerType}</span>
                                 </div>
 
                                 <div className="d-flex justify-content-between gap-2">
@@ -167,7 +166,7 @@ export default function LedgerEntryEdit() {
                                         No items added
                                     </span>
                                     ) : (
-                                    <span className="badge bg-success">
+                                    <span className="badge" style={{background: 'linear-gradient(80deg, #d847fc, #e08cc0)'}} >
                                         <i className="bi-check-circle me-1"></i>
                                         Entry looks valid
                                     </span>
@@ -175,7 +174,7 @@ export default function LedgerEntryEdit() {
                                 </div>
                             </div>
 
-                            <div className="w-50 border border-1 shadow rounded-3 p-3 bg-light">
+                            <div className="w-50 border border-1 shadow rounded-3 p-3">
                                 <h5 className="fw-bold text-center mb-3 color-type">
                                     <i className="bi-clipboard-data me-1"></i>
                                     Entry Overview
@@ -183,7 +182,7 @@ export default function LedgerEntryEdit() {
 
                                 <div className="d-flex justify-content-between mb-2">
                                     <span>Total Items</span>
-                                    <strong>{fields.length -1 }</strong>
+                                    <strong>{fields.length }</strong>
                                 </div>
 
                                 <div className="d-flex justify-content-between mb-2">
@@ -208,7 +207,7 @@ export default function LedgerEntryEdit() {
                                         <i className="bi-x-circle me-1"></i>No Items Added
                                     </span>
                                     ) : (
-                                    <span className="badge bg-success">
+                                    <span className="badge" style={{background: 'linear-gradient(80deg, #d847fc, #e08cc0)'}}>
                                         <i className="bi-check-circle me-1"></i>Ready to Save
                                     </span>
                                     )}
@@ -217,7 +216,7 @@ export default function LedgerEntryEdit() {
                         </div>
 
 
-                        <div className="py-3 border border-1 rounded-3 shadow" style={{backgroundColor: '#8f23aa'}}>
+                        <div className="py-3 border border-1 rounded-3 shadow" style={{background: 'linear-gradient(80deg, #d847fc, #e08cc0)'}}>
                             <h5 className="text-white text-center fw-bold mb-3"><i className="bi-file-earmark-text me-1"></i>Ledger Entry Item</h5>
 
                             {fields.map((item, index) => 

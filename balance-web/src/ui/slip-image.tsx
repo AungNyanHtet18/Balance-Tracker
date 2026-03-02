@@ -6,7 +6,7 @@ export default function SlipImage({src} : {src? : string | File}) {
     
     if(!src) {
         return  (
-            <img src={noslipSrc} className='img-fluid' alt="There is no Slip" />
+            <img src={noslipSrc}  alt="There is no Slip" />
         )
     }
 
@@ -17,7 +17,7 @@ export default function SlipImage({src} : {src? : string | File}) {
     }
     
     return (
-        <img src={URL.createObjectURL(src)} className='img-fluid' alt="Slip File" />
+        <img src={URL.createObjectURL(src)} alt="Slip File" />
     )
 }
 
@@ -46,6 +46,6 @@ function SecuredImage({src} : {src : string}) {
     }
 
     return (
-        <img src={url} className='img-fluid' alt={src} />
+        <img src={url}  alt={src} />
     )
 }

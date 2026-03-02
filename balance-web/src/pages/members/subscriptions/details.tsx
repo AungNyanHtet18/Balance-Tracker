@@ -74,11 +74,14 @@ export default function MemberSubscriptionDetails() {
                 </div>
 
                 <div className="col-3">
-                    <Card title="Palyemt Slip" icon={<i className="bi-filetype-png me-2"></i>}>
-                        <div className="mt-4 mb-2">
-                            <SlipImage src={details.paymentSlip} />
+                    <div className="card" style={{maxHeight: "450px"}}>
+                        <div className="card-body">
+                            <h5 className="d-flex gap-2 color-type fw-bold"><i className="bi-filetype-png"></i>Payment Slip</h5>
+                            <div className="slip-container">
+                                <SlipImage src={details?.paymentSlip}  />
+                            </div>
                         </div>
-                    </Card>
+                    </div>
                 </div>
             </div>
         </Page>

@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router";
-import Page from "../../../ui/page";
 import { useMemberPlanContext } from "../../../model/provider/member-plan-context";
 import React, { useEffect, useRef, useState } from "react";
 import type { CurrentPlan } from "../../../model/dto/member/member-profile";
@@ -97,74 +96,94 @@ export default function SubscriptionApplication() {
         }
     }
 
+
     return (
-        <Page icon={<i className="bi-cart"></i>} title="Subscribe Plan">
+        <div className="px-4 py-3 bg-light" >
+            <div className="d-flex mb-3">
+                <h4 className="fw-bold color-type"><i className="bi bi-bag-check-fill me-2"></i>Subscribe Plan</h4>
+           </div>
 
-            <form onSubmit={handleSubmit(save)} className="row">
-                <input type="hidden" {...register('planId', {required : true})} />
-                <input type="hidden" {...register('slip', {required : true})} />
-                <input ref={fileSelectRef} type="file" className="d-none" onChange={changeSelectedFile} />
-                <div className="col">
-                    <Card icon={<i className="bi-shield me-2"></i>} title={newPlan.name}>
-                        <div className="list-group list-group-flush">
-                            <PlanInfo name="Maximum Ledgers" value={limitValue(newPlan.maxLedgers || 0)} />
-                            <PlanInfo name="Daily Entry" value={limitValue(newPlan.dailyEntry || 0)} />
-                            <PlanInfo name="Monthly Entry" value={limitValue(newPlan.monthlyEntry || 0)} />
-                            <PlanInfo name="Months" value={newPlan.months} />
-                            <PlanInfo name="Fees" value={newPlan.fees.toLocaleString()} />
-                        </div>
-                    </Card>
-                </div>
-                <div className="col">
-                    <Card icon={<i className="bi-cart-plus me-2"></i>} title="Subscription Info">
-                        <FormGroup className="mb-3" label="Subscription Type">
-                            {usages.length > 1 ? 
-                                <select {...register('usage', {required : true})} className="form-select">
+                <form onSubmit={handleSubmit(save)} className="d-flex justify-content-center gap-4 ">
+                    <input type="hidden" {...register('planId', {required : true})} />
+                    <input type="hidden" {...register('slip', {required : true})} />
+                    <input ref={fileSelectRef} type="file" className="d-none" onChange={changeSelectedFile} />
+                    
+                    <div className="w-25">
+                        <Card icon={<i className="bi bi-check-circle-fill"></i>} title={newPlan.name} className="h-100">
+                            <div className="list-group list-group-flush">
+                                <PlanInfo name="Maximum Ledgers" value={limitValue(newPlan.maxLedgers || 0)} />
+                                <PlanInfo name="Daily Entry" value={limitValue(newPlan.dailyEntry || 0)} />
+                                <PlanInfo name="Monthly Entry" value={limitValue(newPlan.monthlyEntry || 0)} />
+                                <PlanInfo name="Months" value={newPlan.months} />
+                                <PlanInfo name="Fees" value={newPlan.fees.toLocaleString()} />
+                                <PlanInfo name="Assistance" value="Email & Chat support"/>
+                                <PlanInfo name="Support" value="Business hours support"/>
+                                <PlanInfo name="Renewal" value="Auto-renew after expiry"/>
+                                <PlanInfo name="Refund" value="No refund after activation"/>
+                            </div>
+                        </Card>
+                    </div>
+
+                    <div className="w-50 ">
+                        <Card icon={<i className="bi bi-cart-check-fill"></i>} title="Subscription Info" className="h-100">
+                            <FormGroup className="mb-3" label="Subscription Type">
+                                {usages.length > 1 ? 
+                                    <select {...register('usage', {required : true})} className="form-select">
+                                        <option value="">Select One</option>
+                                        {usages.map(a => 
+                                            <option key={a} value={a}>{usageValue(a)}</option>
+                                        )}    
+                                    </select> : 
+                                    <>  
+                                        <span className="form-control">{usageValue(usages[0])}</span>
+                                        <input {...register('usage', {required : true})} type="hidden" value={usages[0]} className="form-control" />
+                                    </>
+                                }
+                            </FormGroup>
+
+                            <FormGroup label="Payment Method" className="mb-3">
+                                <select {...register('paymentId', {required : true})} onChange={changePaymentMethod} className="form-select">
                                     <option value="">Select One</option>
-                                    {usages.map(a => 
-                                        <option key={a} value={a}>{usageValue(a)}</option>
-                                    )}    
-                                </select> : 
-                                <>  
-                                    <span className="form-control">{usageValue(usages[0])}</span>
-                                    <input {...register('usage', {required : true})} type="hidden" value={usages[0]} className="form-control" />
-                                </>
-                            }
-                        </FormGroup>
+                                    {payments.map(a => 
+                                        <option key={a.id} value={a.id}>{a.name}</option>
+                                    )}
+                                </select>
+                            </FormGroup>
 
-                        <FormGroup label="Payment Method" className="mb-3">
-                            <select {...register('paymentId', {required : true})} onChange={changePaymentMethod} className="form-select">
-                                <option value="">Select One</option>
-                                {payments.map(a => 
-                                    <option key={a.id} value={a.id}>{a.name}</option>
-                                )}
-                            </select>
-                        </FormGroup>
+                            <FormGroup label="Account No" className="mb-3">
+                                <input type="text" readOnly={true} className="form-control" value={payment?.accountNo} />
+                            </FormGroup>
+                            
+                            <FormGroup label="Account Name" className="mb-3">
+                                <input type="text" readOnly={true} className="form-control" value={payment?.accountName} />
+                            </FormGroup>
 
-                        <FormGroup label="Account No" className="mb-3">
-                            <input type="text" readOnly={true} className="form-control" value={payment?.accountNo} />
-                        </FormGroup>
-                        
-                        <FormGroup label="Account Name" className="mb-3">
-                            <input type="text" readOnly={true} className="form-control" value={payment?.accountName} />
-                        </FormGroup>
+                            <div>
+                                <button onClick={uploadSlip} type="button" className="btn btn-purple me-2">
+                                    <i className="bi-upload"></i> Upload Slip
+                                </button>
 
-                        <div>
-                            <button onClick={uploadSlip} type="button" className="btn btn-outline-secondary me-2">
-                                <i className="bi-upload"></i> Upload Slip
-                            </button>
-                            <button type="submit" disabled={!isValid} className={`btn btn-secondary`}>
-                                <i className="bi-save"></i> Subscribe Plan
-                            </button>
+                                <button type="submit" disabled={!isValid} className={`btn ${isValid ?  'btn-dark' : 'border border-1 border-black text-black'}`}>
+                                    <i className="bi-save"></i> Subscribe Plan
+                                </button>
+                            </div>
+                        </Card>
+                    </div>
+
+                    <div className="w-25">
+                        <div className="card" style={{maxHeight: "450px"}}>
+                            <div className="card-body">
+                                <h5 className="d-flex gap-2 color-type fw-bold">Payment Slip</h5>
+                                <div className="slip-container">
+                                    <SlipImage src={slip} />
+                                </div>
+                            </div>
                         </div>
-                    </Card>
-                </div>
-                <div className="col-3">
-                    <Card icon={<i className="bi-credit-card me-2"></i>} title="Payment Slip">
-                        <SlipImage src={slip} />
-                    </Card>
-                </div>
-            </form>
-        </Page>
+                    </div>
+                </form>
+        </div>
     )
 }
+
+
+

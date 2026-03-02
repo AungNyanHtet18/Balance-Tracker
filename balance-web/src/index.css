@@ -26,7 +26,6 @@ body {
 }
 
 
-
 /*Button */
 .btn-purple {
   color: white;
@@ -41,10 +40,33 @@ body {
   color: var(--primary-color);
 }
 
-
-
-
 /* Contact Us page */
 .bottom-border-size {
     border-bottom-width: 2px !important;
+}
+
+
+/*Subcription Payment Form Page */
+.slip-container img {
+    width: 100%;       
+    height: 390px;      
+    object-fit: cover; 
+    object-position: center;
+}
+
+
+/*Sucription Nav Link */
+.append-nav-type {
+  color: #8f23aa;   
+
+}
+
+.append-nav-type:hover {
+  color: #ff6ec7;             
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.append-nav  .active {
+  background: linear-gradient(135deg, #d148f3, #f745b2);
 }

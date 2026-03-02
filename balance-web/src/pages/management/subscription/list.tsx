@@ -62,13 +62,13 @@ function SearchForm({page = 0, size = 10, onSearch} : {page: number, size: numbe
 
     return (
         <>
-            <ul className="nav nav-tabs">
+            <ul className="nav nav-tabs append-nav">
                 {SUBSCRIPTION_STATUS_LIST.map(item => 
                     <li key={item} className="nav-item">
                         <a href="#" onClick={e => {
                             e.preventDefault()
                             setStatus(item)
-                        }} className={`nav-link ${status == item && 'active'}`}>{item}</a>
+                        }} className={`nav-link ${status == item ? 'active text-light ' : 'append-nav-type'}`}>{item}</a>
                     </li>
                 )}
             </ul>

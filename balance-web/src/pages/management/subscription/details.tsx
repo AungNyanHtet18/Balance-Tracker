@@ -146,12 +146,19 @@ function SubscriptionDetailsView({details, setStatus} : {details: SubscriptionDe
                         <Information label="Created At" value={details?.createdAt || ''} /> 
                         <Information label="Modified At" value={details?.updatedAt || ''} /> 
                     </Card>
+                    
                 </div>
 
                 <div className="col-3">
-                    <Card title="Payment Slip" icon={<i className="bi-filetype-png"></i>}>
-                        <SlipImage src={details?.paymentSlip} />                     
-                    </Card>
+
+                    <div className="card" style={{maxHeight: "450px"}}>
+                        <div className="card-body">
+                            <h5 className="d-flex gap-2 color-type fw-bold"><i className="bi-filetype-png"></i>Payment Slip</h5>
+                            <div className="slip-container">
+                                <SlipImage src={details?.paymentSlip}  />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </Page>

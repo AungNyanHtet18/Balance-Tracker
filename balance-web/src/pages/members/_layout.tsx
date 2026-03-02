@@ -10,7 +10,7 @@ import { useEffect, useState } from "react"
 import { getYears } from "../../model/client/member/dashboard-client"
 import { BusinessYearContext } from "../../model/provider/business-years-context"
 
-const fullWidthRoutes: string[] = ['/member/entry/debit/edit'];
+const fullWidthRoutes: string[] = ['/member/entry/debit/edit','/member/subscription/:id'];
 
 
 export default function MembersLayout() {
