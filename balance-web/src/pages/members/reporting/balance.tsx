@@ -15,6 +15,7 @@ export default function BalanceManagement() {
     const [size, setSize] = useState(10)
     const [result, setResult] = useState<PageResult<BalanceReportListItem>>({contents : []})
     const {contents, pager} = result
+    const [viewMode, setViewMode] = useState<'table' | 'card'>('card')
 
     useEffect(() => {
         setPage(0)
@@ -28,11 +29,22 @@ export default function BalanceManagement() {
     }
 
     return (
-        <Page title="Balance Management" icon={<i className="bi-pie-chart"></i>}>
+        <Page title="Balance Management" icon={<i className="bi-pie-chart"></i>} actions={
+            <div className="d-flex justify-content-end mb-3">
+                <div className="btn-group shadow-sm">
+                    <button type="button" className={`btn btn-sm ${viewMode === 'card' ? 'btn-dark' : 'btn-outline-dark'}`} onClick={() => setViewMode('card')} title="Card View">
+                        <i className="bi-grid"></i>
+                    </button>
+                    <button type="button" className={`btn btn-sm ${viewMode === 'table' ? 'btn-dark' : 'btn-outline-dark'}`} onClick={() => setViewMode('table')} title="Table View">
+                        <i className="bi-table"></i>
+                    </button>
+                </div>
+            </div>
+        }>
             <SearchForm onSearch={search} page={page} size={size} />
 
             <section className="my-3">
-                <ListView list={contents} />
+                <ListView list={contents} viewMode={viewMode} />
             </section>
 
             <Pagination pager={pager} pageChange={setPage} sizeChange={setSize} />
@@ -69,11 +81,48 @@ function SearchForm({page, size, onSearch} : {page: number, size : number, onSea
     )
 }
 
-function ListView({list} : {list : BalanceReportListItem[]}) {
+function ListView({list, viewMode} : {list : BalanceReportListItem[], viewMode: 'table' | 'card'}) {
 
     if(!list.length) {
         return (
             <NoData name="Balance Report" />
+        )
+    }
+
+    if (viewMode === 'card') {
+        return (
+            <div className="row g-3">
+                {list.map(item => (
+                    <div className="col-12 col-md-6 col-lg-4" key={item.id.requestId}>
+                        <div className="card h-100 shadow-sm border-2">
+                            <div className="card-body d-flex flex-column">
+                                <div className="d-flex justify-content-between align-items-center mb-2">
+                                    <span className="badge" style={{backgroundColor: '#8f23aa'}}>{item.id.code}</span>
+                                    <small className="text-muted"><i className="bi-calendar3 me-1"></i> {item.issueAt}</small>
+                                </div>
+                                <h5 className="card-title text-truncate fw-bold mb-2 " title={item.ledger}>{item.ledger}</h5>
+                                <p className="card-text text-muted mb-3 flex-grow-1">{item.particular || '-'}</p>
+                                
+                                <div className="d-flex justify-content-between mb-1">
+                                    <span className="text-muted small">Debit:</span>
+                                    <span className="font-monospace text-danger">{item.debit.toLocaleString()}</span>
+                                </div>
+                                <div className="d-flex justify-content-between mb-3 border-bottom pb-2">
+                                    <span className="text-muted small">Credit:</span>
+                                    <span className="font-monospace text-success">{item.credit.toLocaleString()}</span>
+                                </div>
+
+                                <div className="d-flex justify-content-between align-items-start mt-auto pt-1">
+                                    <span className="fs-5 font-monospace mb-0">{item.balance.toLocaleString()}</span>
+                                    <Link to={`/member/balance/${item.id.requestId}`} className="icon-link color-type text-decoration-none">
+                                         <i className="bi bi-arrow-right-circle-fill fs-4"></i>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
         )
     }
 

@@ -21,6 +21,7 @@ export default function LedgerEntryManagement() {
     const [size, setSize] = useState(10)
     const [result, setResult] = useState<PageResult<LedgerEntryListItem>>({contents: []})
     const {contents, pager} = result
+    const [viewMode, setViewMode] = useState<'table' | 'card'>('card')
 
     useEffect(() => {
         setPage(0)
@@ -40,11 +41,23 @@ export default function LedgerEntryManagement() {
     }
 
     return (
-        <Page icon={icon} title={`${ledgerType} Management`}>
+        <Page icon={icon} title={`${ledgerType} Management`} actions={
+                <div className="d-flex justify-content-end mb-3">
+                    <div className="btn-group shadow-sm">
+                        <button type="button" className={`btn btn-sm ${viewMode === 'card' ? 'btn-dark' : 'btn-outline-dark'}`} onClick={() => setViewMode('card')} title="Card View">
+                            <i className="bi-grid"></i>
+                        </button>
+                        <button type="button" className={`btn btn-sm ${viewMode === 'table' ? 'btn-dark' : 'btn-outline-dark'}`} onClick={() => setViewMode('table')} title="Table View">
+                            <i className="bi-table"></i>
+                        </button>
+                    </div>
+                </div>
+        }>
             <SearchForm page={page} size={size} type={ledgerType} onSearch={search} />
 
             <section className="my-3">
-                <ListView list={contents} />
+
+                <ListView list={contents} viewMode={viewMode} />
             </section>
 
             <Pagination pageChange={setPage} sizeChange={setSize} pager={pager} />
@@ -103,11 +116,38 @@ function SearchForm({type, page, size, onSearch} : {type: LedgerType, page : num
     )
 }
 
-function ListView({list} : {list : LedgerEntryListItem[]}) {
+function ListView({list, viewMode} : {list : LedgerEntryListItem[], viewMode: 'table' | 'card'}) {
 
     if(!list.length) {
         return (
             <NoData name="Ledger Entry" />
+        )
+    }
+
+    if (viewMode === 'card') {
+        return (
+            <div className="row g-3">
+                {list.map(item => (
+                    <div className="col-12 col-md-6 col-lg-4" key={item.id.requestId}>
+                        <div className="card h-100 shadow-sm border-2">
+                            <div className="card-body d-flex flex-column">
+                                <div className="d-flex justify-content-between align-items-center mb-2">
+                                    <span className="badge" style={{backgroundColor: '#8f23aa'}}>{item.id.code}</span>
+                                    <small className="text-muted"><i className="bi-calendar3 me-1"></i> {item.issueAt}</small>
+                                </div>
+                                <h5 className="card-title text-truncate fw-bold mb-2 " title={item.ledgerName}>{item.ledgerName}</h5>
+                                <p className="card-text text-muted mb-3 flex-grow-1">{item.particular || '-'}</p>
+                                <div className="d-flex justify-content-between align-items-start mt-auto pt-3 border-top">
+                                    <span className="fs-5 font-monospace mb-0">{item.amount.toLocaleString()}</span>
+                                    <Link to={`/member/balance/${item.id.requestId}`} className="icon-link color-type text-decoration-none">
+                                        <i className="bi bi-arrow-right-circle-fill fs-4"></i>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
         )
     }
 
