@@ -134,3 +134,19 @@ body {
 .append-nav  .active {
    color: #8f23aa !important;
 }
+
+
+/* login */
+div .login-width {
+   width: 320px;
+}
+
+div .login-height{
+   height: 370px;
+}
+
+div .login-circle {
+  width: 60px;
+  height: 60px;
+  background-color: #8f23aa;
+}

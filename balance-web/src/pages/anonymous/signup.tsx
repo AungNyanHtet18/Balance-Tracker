@@ -23,37 +23,50 @@ export default function SignUp() {
     }
 
     return (
-        <div className="w-50">
-            <h3><i className="bi-unlock"></i> Sign Up</h3>
+        <div className="bg-white border border-1 rounded-3 shadow-sm py-4 px-5">
+           
+           <div className="d-flex flex-column gap-2">
+                 <div className="d-flex justify-content-center align-items-center gap-1">
+                        <div className="d-flex justify-content-center">
+                            <div className= "d-flex justify-content-center rounded-circle login-circle" >
+                            <i className="bi bi-person-fill-check fs-1 text-white"></i>
+                            </div>
+                        </div>
 
-            <form onSubmit={handleSubmit(signUp)} className="mt-4">
-                <FormGroup label="Name">
-                    <input type="text" className="form-control" placeholder="Please enter name" {
+                        <h1 className="fw-bold color-type">Apex Balance</h1>
+                   </div>
+                 
+                 <h5 className="mt-2 fw-bold"> <i className="bi bi-person-plus me-1"></i>Register an account</h5>
+            </div>
+
+            <form onSubmit={handleSubmit(signUp)} className="mt-1">
+                <FormGroup className="login-width" >
+                    <input type="text" className="form-control bg-light" placeholder="Username" {
                         ...register('name', {required : "Please enter your name."})
                     } />
                     {errors.name && <span className="text-danger">{errors.name.message}</span>}
                 </FormGroup>
 
-                <FormGroup label="Email" className="mt-3">
-                    <input type="text" className="form-control" placeholder="Please enter email for login" {
+                <FormGroup className="mt-3 login-width">
+                    <input type="text" className="form-control bg-light" placeholder="Email " {
                         ...register('email', {required : "Please enter email for login."})
                     } />
-                    {errors.email && <span className="text-danger">{errors.email.message}</span>}
+                    {errors.email && <span className="text-danger mt-1">{errors.email.message}</span>}
                 </FormGroup>
 
-                <FormGroup label="Password" className="mt-3">
-                    <input type="password" className="form-control" placeholder="Please enter password" {
+                <FormGroup className="mt-3 login-width">
+                    <input type="password" className="form-control bg-light" placeholder="Password" {
                         ...register('password', {required : "Please enter password."})
                     } />
-                    {errors.password && <span className="text-danger">{errors.password.message}</span>}
+                    {errors.password && <span className="text-danger mt-1">{errors.password.message}</span>}
                 </FormGroup>
 
-                <div className="mt-3">
-                    <button type="submit" className="btn btn-secondary">
+                <div className="mt-4">
+                    <button type="submit" className="btn btn-outline-dark">
                         <i className="bi-person-plus"></i> Sign Up
                     </button>
 
-                    <Link to="/signin" className="btn btn-outline-secondary ms-2">
+                    <Link to="/signin" className="btn btn-purple ms-2">
                         <i className="bi-unlock"></i> Sign In
                     </Link>
                 </div>

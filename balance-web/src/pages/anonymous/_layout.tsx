@@ -3,16 +3,8 @@ import ClientErrorMessage from "../../ui/client-error-message";
 
 export default function AnonymousLayout() {
     return (
-        <div className="d-flex align-items-stretch vh-100">
-
-            <section className="bg-secondary w-50 d-flex flex-column justify-content-center align-items-center">
-                <i className="bi-bar-chart cover-icon"></i>
-
-                <h1 className="text-white">My Balance</h1>
-                <h5 className="text-white">Welcome to my balance app</h5>
-            </section>
-
-            <main className="w-50 d-flex flex-column justify-content-center align-items-center">
+        <div>
+            <main className="w-100 vh-100 d-flex  justify-content-center align-items-center" >
                 <Outlet />
             </main>
 
