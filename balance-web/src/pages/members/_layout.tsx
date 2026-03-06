@@ -9,6 +9,7 @@ import type React from "react"
 import { useEffect, useState } from "react"
 import { getYears } from "../../model/client/member/dashboard-client"
 import { BusinessYearContext } from "../../model/provider/business-years-context"
+import logoImage from "../../assets/logo.png"
 
 const fullWidthRoutes: string[] = ['/member/entry/credit/edit',
                                     '/member/entry/debit/edit',
@@ -81,10 +82,13 @@ function Navigation() {
     }
 
     return (
-        <nav className="navbar bg-light navbar-expand shadow-sm">
+        <nav className="navbar bg-light navbar-expand bg-white shadow-sm sticky-top">
             <div className="container-fluid">
                 <Link to="/member" className="navbar-brand">
-                    <i className="bi-bar-chart"></i> My Balance
+                    <div className="d-flex align-items-center">
+                       <img src={logoImage} alt="Logo" width={30} height={30} />
+                         <h5 className="fw-bold mb-0">Apex Balance</h5>
+                    </div>
                 </Link>
 
                 <ul className="navbar-nav">
@@ -96,11 +100,11 @@ function Navigation() {
                     <NavItem path="/member/entry/credit" title="Credit" icon={<i className="bi-bag-plus"></i>} />
                     <NavItem path="/member/ledger" title="Ledgers" icon={<i className="bi-tags"></i>} />
                     
-                    <li className="nav-item dropdown">
-                        <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown" >
+                    <li className="nav-item dropdown dropdownhover">
+                        <a href="#" className="nav-link dropdown-toggle fw-semibold">
                             <i className="bi-person"></i> {auth?.name}
                         </a>
-                        <ul className="dropdown-menu dropdown-menu-end">
+                        <ul className="dropdown-menu userdropdown">
                             <li>
                                 <Link to="/member" className="dropdown-item">
                                     <i className="bi-house"></i> Dashboard

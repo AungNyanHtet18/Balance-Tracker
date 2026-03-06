@@ -34,7 +34,7 @@ export default function MemberSubscriptionDetails() {
     }
 
     return (
-        <Page className="p-3 bg-light" icon={<i className="bi-credit-card"></i> } title="Subscription Details">
+        <Page className="p-3 " icon={<i className="bi-credit-card"></i> } title="Subscription Details">
             <div className="row">
                 <div className="col-3">
                     <Card className="mb-4" title="New Plan" icon={<i className="bi-shield-check me-2"></i>}>

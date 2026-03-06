@@ -46,7 +46,7 @@ export default function PaymentMethods() {
                         <i className="bi-search"></i> Search
                     </button>
 
-                    <Link to="edit" className="btn btn-outline-dark ms-2">
+                    <Link to="edit" className="btn btn-purple ms-2">
                         <i className="bi-plus"></i> Create Payment
                     </Link>
                 </div>

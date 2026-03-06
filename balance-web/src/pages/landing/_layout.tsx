@@ -1,6 +1,7 @@
 import { Link, Outlet, useNavigate } from "react-router";
 import NavItem from "../../ui/nav-item";
 import { authStore } from "../../model/store/auth-result.store";
+import logoImage from "../../assets/logo.png"
 
 export default function LandingLayout() {
     
@@ -27,10 +28,13 @@ function Navigation() {
     }
 
     return (
-        <nav className="navbar bg-light navbar-expand shadow-sm">
+        <nav className="navbar navbar-expand shadow-sm">
             <div className="container-fluid">
                 <Link to="#" className="navbar-brand">
-                    <i className="bi-bar-chart"></i> My Balance
+                    <div className="d-flex align-items-center">
+                       <img src={logoImage} alt="Logo" width={30} height={30} />
+                         <h5 className="fw-bold mb-0">Apex Balance</h5>
+                    </div>
                 </Link>
 
                 <ul className="navbar-nav">

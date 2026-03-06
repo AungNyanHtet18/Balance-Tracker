@@ -1,12 +1,17 @@
-import { Link, matchPath, Outlet, useLocation, useNavigate } from "react-router"
+import { Link, matchPath, NavLink, Outlet, useLocation, useNavigate } from "react-router"
 import { authStore } from "../../model/store/auth-result.store"
 import ManagementPlanProvider from "../../model/provider/management-plan-provider"
 import ClientErrorMessage from "../../ui/client-error-message"
 import { useEffect, useState } from "react"
 import { getYears } from "../../model/client/management/dashboard-client"
 import { BusinessYearContext } from "../../model/provider/business-years-context"
+import logoImage from "../../assets/logo.png"
 
-const fullWidthRoutes: string[] = ['/admin/master/payment/edit','/admin/master/payment/:id','/admin/master/plan/edit','/admin/master/plan/:id'];
+const fullWidthRoutes: string[] = ['/admin/master/payment/edit',
+                                   '/admin/master/payment/:id',
+                                   '/admin/master/plan/edit',
+                                   '/admin/master/plan/:id',
+                                   '/admin/subscriptions/:id'];
 
 export default function AdminLayout() {
 
@@ -61,42 +66,48 @@ function Navigation() {
     }
 
     return (
-        <nav className="navbar navbar-expand navbar-light bg-light shadow-sm sticky-top">
+        <nav className="navbar navbar-expand navbar-light bg-white shadow-sm sticky-top">
             <div className="container-fluid">
                 <Link className="navbar-brand" to='/admin'>
-                    <i className="bi-house"></i> Balance Admin
+                    <div className="d-flex align-items-center">
+                       <img src={logoImage} alt="Logo" width={30} height={30} />
+                         <h5 className="fw-bold mb-0">Apex Balance</h5>
+                    </div>
                 </Link>
 
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <Link to="/admin/subscriptions" className="nav-link">
-                            <i className="bi-cart-plus"></i> Subscriptions
-                        </Link>
+                        <NavLink to="/admin/subscriptions" className={({ isActive }) =>
+                            `nav-link d-flex align-items-start gap-1 fw-semibold  ${isActive ? "active" : ""}`}>
+                            <i className="bi-cart-plus"></i><span className="nav-text">Subscriptions</span>
+                        </NavLink>
                     </li>
                     <li className="nav-item">
-                        <Link to="/admin/contact" className="nav-link">
-                            <i className="bi bi-chat-dots"></i> Contact
-                        </Link>
+                        <NavLink to="/admin/contact" className={({ isActive }) =>
+                            `nav-link d-flex align-items-start gap-1 fw-semibold  ${isActive ? "active" : ""}`}>
+                            <i className="bi bi-chat-dots"></i><span className="nav-text">Contact</span> 
+                        </NavLink>
                     </li>
                     <li className="nav-item">
-                        <Link to="/admin/members" className="nav-link">
-                            <i className="bi-people"></i> Members
-                        </Link>
+                        <NavLink to="/admin/members" className={({ isActive }) =>
+                            `nav-link d-flex align-items-start gap-1 fw-semibold  ${isActive ? "active" : ""}`}>
+                            <i className="bi-people"></i> <span className="nav-text">Members</span>
+                        </NavLink>
                     </li>
-                    <li className="nav-item dropdown">
-                        <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown" >
+                    <li className="nav-item dropdown dropdownhover">
+                        <a href="#" className="nav-link dropdown-toggle fw-semibold " >
                             <i className="bi-database"></i> Master Data
                         </a>
                         <ul className="dropdown-menu">
                             <li>
-                                <Link to="/admin/master/plan" className="dropdown-item">
+                                <NavLink to="/admin/master/plan" className="dropdown-item">
                                     <i className="bi-bookmark-heart"></i> Subscription Plan
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to="/admin/master/payment" className="dropdown-item">
+                                <NavLink to="/admin/master/payment" className="dropdown-item">
                                     <i className="bi-credit-card"></i> Payment Method
-                                </Link>
+                                </NavLink>
                             </li>
                         </ul>
                     </li>
@@ -104,7 +115,7 @@ function Navigation() {
                         <a onClick={e => {
                             e.preventDefault()
                             signOut()
-                        }} className="nav-link">
+                        }} className="nav-link fw-semibold ">
                             <i className="bi-lock"></i> Sign Out
                         </a>
                     </li>

@@ -98,7 +98,7 @@ export default function SubscriptionApplication() {
 
 
     return (
-        <div className="px-4 py-3 bg-light" >
+        <div className="px-4 py-3" >
             <div className="d-flex mb-3">
                 <h4 className="fw-bold color-type"><i className="bi bi-bag-check-fill me-2"></i>Subscribe Plan</h4>
            </div>

@@ -101,11 +101,11 @@ export default function MemberInfoEdit() {
                        <MemberImage src={memberPhoto} />
 
                        <div className="mt-2">
-                         <button onClick={uploadImage} type="button" className="btn btn-outline-secondary me-2">
+                         <button onClick={uploadImage} type="button" className="btn btn-dark me-2">
                               <i className="bi-upload"></i> Upload Image
                          </button>
 
-                         <button type="submit" disabled={!isValid} className="btn btn-secondary">
+                         <button type="submit" disabled={!isValid} className="btn btn-purple">
                             <i className="bi-save"></i> Save
                          </button>
                        </div>

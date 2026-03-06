@@ -51,7 +51,7 @@ export default function SubscriptionPlanManagement() {
                         <i className="bi-search"></i> Search
                     </button>
 
-                    <Link to="/admin/master/plan/edit" className="btn btn-outline-dark ms-2">
+                    <Link to="/admin/master/plan/edit" className="btn btn-purple ms-2">
                         <i className="bi-plus"></i> Create Plan
                     </Link>
                 </div>

@@ -74,7 +74,7 @@ function UpdateDialog({status, save} : {status : SubscriptionStatus, save : (for
             {status == 'Denied' && 
                 <FormGroup label="Deny Reason">
                     <textarea {...register('message', {required : true})} className="form-control" placeholder="Enter Deny Reason"></textarea>                   
-                    {errors.message && <FormError message="Please eneter deny reason." />}
+                    {errors.message && <FormError message="Please enter deny reason." />}
                 </FormGroup>
             }
             </form>
@@ -96,7 +96,7 @@ function SubscriptionDetailsView({details, setStatus} : {details: SubscriptionDe
     }, [details, setShow])
 
     return (
-        <Page title="Subscription Details" icon={<i className="bi-cart-plus"></i>} actions={
+        <Page className="p-3 bg-light" title="Subscription Details" icon={<i className="bi-cart-plus"></i>} actions={
             details?.status == 'Pending' && 
             <div>
                 <button onClick={() => updateStatus('Approved')} type="button" className="btn btn-primary">
@@ -129,7 +129,7 @@ function SubscriptionDetailsView({details, setStatus} : {details: SubscriptionDe
 
                 </div>
 
-                <div className="col">
+                <div className="col mb-4">
                     <Card title="Member" className="mb-3" >
                         <Information label="Name" value={details?.memberName || ''} /> 
                         <Information label="Phone" value={details?.phone || 'No Phone Number'} /> 
@@ -150,8 +150,7 @@ function SubscriptionDetailsView({details, setStatus} : {details: SubscriptionDe
                 </div>
 
                 <div className="col-3">
-
-                    <div className="card" style={{maxHeight: "450px"}}>
+                    <div className="card" style={{maxHeight: "460px"}}>
                         <div className="card-body">
                             <h5 className="d-flex gap-2 color-type fw-bold"><i className="bi-filetype-png"></i>Payment Slip</h5>
                             <div className="slip-container">
