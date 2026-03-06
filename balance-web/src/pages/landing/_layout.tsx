@@ -2,6 +2,7 @@ import { Link, Outlet, useNavigate } from "react-router";
 import NavItem from "../../ui/nav-item";
 import { authStore } from "../../model/store/auth-result.store";
 import logoImage from "../../assets/logo.png"
+import Footer from "../../ui/footer";
 
 export default function LandingLayout() {
     
@@ -11,6 +12,7 @@ export default function LandingLayout() {
         <main className="container-fluid mt-3">
             <Outlet />
         </main>
+        <Footer/>
        </>
      )
 }
@@ -28,7 +30,7 @@ function Navigation() {
     }
 
     return (
-        <nav className="navbar navbar-expand shadow-sm">
+        <nav className="navbar navbar-expand shadow-sm bg-white sticky-top">
             <div className="container-fluid">
                 <Link to="#" className="navbar-brand">
                     <div className="d-flex align-items-center">
@@ -51,7 +53,7 @@ function Navigation() {
                             <li className="nav-item">
                             </li>
                             <li className="nav-item dropdown">
-                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown" >
+                                <a href="#" className="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" >
                                     <i className="bi-person"></i> {auth?.name}
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-end">

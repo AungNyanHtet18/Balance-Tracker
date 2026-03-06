@@ -29,7 +29,7 @@ export default function ContactUs() {
    }
    
    return (
-         <div className="row g-3 px-4">
+         <div className="row g-3 px-4 mb-5">
             <div className="col-md-6 py-2">
                <h1 className="color-type fw-bold">Contact Us</h1>
                <p className="fs-6 fw-lighter">Not sure what you need?The team at Square Events will be happy to listen to you and suggest event ideas you hadn't considered</p>

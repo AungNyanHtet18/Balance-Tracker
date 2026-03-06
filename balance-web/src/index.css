@@ -51,9 +51,15 @@ body {
   transition: transform 0.7s ease, opacity 0.25s ease;
 }
 
-.nav-link .active .nav-text {
+.nav-link.active .nav-text {
   color: var(--primary-color);
 }
+
+.nav-link.active .nav-text::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
 
 .nav-link:hover .nav-text::after {
   transform: scaleX(1);
@@ -68,10 +74,6 @@ body {
     display: block;
     right: 2px;
 }
-
-
-
-
 
 .dropdown-item.active,
 .dropdown-item:active{

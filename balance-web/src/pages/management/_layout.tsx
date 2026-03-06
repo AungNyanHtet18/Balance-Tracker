@@ -71,7 +71,7 @@ function Navigation() {
                 <Link className="navbar-brand" to='/admin'>
                     <div className="d-flex align-items-center">
                        <img src={logoImage} alt="Logo" width={30} height={30} />
-                         <h5 className="fw-bold mb-0">Apex Balance</h5>
+                         <h5 className="fw-bold mb-0">Apex Admin Balance</h5>
                     </div>
                 </Link>
 
