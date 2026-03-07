@@ -1,6 +1,6 @@
 export default function Footer() {
      return (
-        <div className="pb-4 bg-dark rounded-top-4">
+        <div className="pb-4 bg-dark">
             <div className="px-5 py-4 d-flex justify-content-between align-items-center">
                <div className="d-flex flex-column text-white">
                    <h2 className="fw-bold">APEX</h2>

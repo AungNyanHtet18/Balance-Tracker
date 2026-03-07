@@ -9,7 +9,7 @@ export default function LandingLayout() {
      return (
        <>
         <Navigation/>
-        <main className="container-fluid mt-3">
+        <main>
             <Outlet />
         </main>
         <Footer/>
@@ -30,7 +30,7 @@ function Navigation() {
     }
 
     return (
-        <nav className="navbar navbar-expand shadow-sm bg-white sticky-top">
+        <nav className="navbar w-100 navbar-expand shadow-sm bg-white" style={{ zIndex: 1050, top: 0, position: "fixed", transition: "all 0.3s ease", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
             <div className="container-fluid">
                 <Link to="#" className="navbar-brand">
                     <div className="d-flex align-items-center">
