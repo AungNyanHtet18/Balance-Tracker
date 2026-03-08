@@ -22,5 +22,4 @@ public class ContactUsApi {
 		return service.contact(form);
 	}
 	
-	
 }

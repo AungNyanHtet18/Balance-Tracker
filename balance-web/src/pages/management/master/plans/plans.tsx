@@ -85,7 +85,7 @@ export default function SubscriptionPlanManagement() {
                                 <td>{item.subscription}</td>
                                 <td>{item.member}</td>
                                 <td className="text-center">
-                                    <Link to={`/admin/master/plan/${item.id}`} className="icon-link">
+                                    <Link to={`/admin/master/plan/${item.id}`} className="icon-link color-type">
                                         <i className="bi-arrow-right"></i>
                                     </Link>
                                 </td>

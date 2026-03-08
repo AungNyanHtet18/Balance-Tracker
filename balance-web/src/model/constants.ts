@@ -10,4 +10,4 @@ export const SUBSCRIPTION_STATUS_LIST:SubscriptionStatus[] = ['Pending', 'Approv
 export const NOT_YET = "Not Defined"
 
 
-export const COLORS:string[]= ["#615FFF", "#F0B13B", "#E7180B", "#E8FFD7", ]
+export const COLORS:string[]= ["#8f23aa", "#444341", "#E7180B", "#E8FFD7", ]

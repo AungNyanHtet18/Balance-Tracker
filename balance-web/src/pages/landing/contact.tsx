@@ -59,7 +59,7 @@ export default function ContactUs() {
             variants={containerVariants}
         >
             <motion.div className="col-md-6 py-2 pe-lg-5" variants={slideLeftVariants}>
-                <h1 className="fw-bolder display-5 mb-4">
+                <h1 className="fw-bolder display-5 mt-5">
                       <span className="me-3"  style={{
                             background: "linear-gradient(90deg, #8f23aa 0%, #b54ccc 100%)",
                             WebkitBackgroundClip: "text",

@@ -60,14 +60,14 @@ function SummaryInfo({summary} : {summary : SummaryData}) {
         <>
             <DashboardStatusInfo 
                 name="Debit" 
-                bgColor="bg-danger" 
+                bgColor="bg-dark" 
                 textColor="text-white"
                 value={getTotal('Debit')}
                 icon={<i className="bi-cart-dash" style={{fontSize : 60}}></i>} />
                 
             <DashboardStatusInfo 
                 name="Credit" 
-                bgColor="bg-primary" 
+                bgColor="bg-purple" 
                 textColor="text-white"
                 value={getTotal('Credit')}
                 icon={<i className="bi-cart-plus" style={{fontSize : 60}}></i>} />

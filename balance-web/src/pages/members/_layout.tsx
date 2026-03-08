@@ -30,7 +30,7 @@ export default function MembersLayout() {
 
             <MasterDataProvider>
                 <BusinessYearContextProvider>
-                    <main className={fullWidthPage ? '' : 'container-fluid mt-3 pb-3'}>
+                    <main className={fullWidthPage ? '' : 'container-fluid p-3'}>
                         <Outlet />
                     </main>
                 </BusinessYearContextProvider>

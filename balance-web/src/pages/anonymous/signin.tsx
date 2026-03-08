@@ -72,7 +72,7 @@ export default function SignIn() {
                                 <FormGroup className="mb-4" label="Email Address" labelClassName="fw-semibold text-secondary mb-2 fs-6">
                                     <div className="position-relative">
                                         <i className="bi bi-envelope position-absolute top-50 translate-middle-y text-muted ms-3"></i>
-                                        <input type="text" className="form-control form-control-lg bg-light border-0" placeholder="name@company.com" 
+                                        <input type="text" className="form-control form-control-lg bg-light border-0" placeholder="name@gmail.com" 
                                             style={{ borderRadius: "12px", paddingLeft: "45px", paddingRight: "20px", fontSize: "1rem", height: "55px", transition: "all 0.3s ease", boxShadow: "inset 0 1px 2px rgba(0,0,0,0.02)" }}
                                             {...register('email', {required : "Please enter email for login."})}/>
                                     </div>

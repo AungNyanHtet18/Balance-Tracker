@@ -35,11 +35,11 @@ export default function DashBoard() {
                     <DashboardStatusInfo name="Pending" 
                         icon={<i className="bi-cart" style={{fontSize: 60}}></i>} 
                         value={getStatusCount('Pending', summary)}
-                        bgColor="bg-warning" textColor="text-white" />
+                        bgColor="bg-dark" textColor="text-white" />
                     <DashboardStatusInfo name="Approved" 
                         icon={<i className="bi-check-circle" style={{fontSize: 60}}></i>} 
                         value={getStatusCount('Approved', summary)}
-                        bgColor="bg-primary" textColor="text-white" />
+                        bgColor="bg-purple" textColor="text-white" />
                     <DashboardStatusInfo name="Denied" 
                         icon={<i className="bi-exclamation-circle" style={{fontSize: 60}}></i>} 
                         value={getStatusCount('Denied', summary)}

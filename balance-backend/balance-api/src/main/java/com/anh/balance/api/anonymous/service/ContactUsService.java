@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.anh.balance.api.anonymous.input.ContactUsForm;
 import com.anh.balance.common.dto.ModificationResult;
 import com.anh.balance.domain.entity.ContactUs;
 import com.anh.balance.domain.repo.ContactUsRepo;
 
 import lombok.RequiredArgsConstructor;
+
 
 @Service
 @RequiredArgsConstructor
@@ -31,5 +31,4 @@ public class ContactUsService {
 		
 		return  ModificationResult.success(contact.getId());
 	}
-
 }

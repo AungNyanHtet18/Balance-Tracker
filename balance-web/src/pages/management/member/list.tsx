@@ -126,7 +126,7 @@ function ListView({list, banMember} : {list : MemberListItem[], banMember: (id: 
                     <td>{item.phone}</td>
                     <td>{item.email}</td>
                     <td className="text-center">
-                        <button onClick={() => {banMember(item.id)}} className={`btn  ${item.deleted ? 'btn-primary': 'btn-danger' }`}>{item.deleted ? 'Activate' : 'Ban' } </button>
+                        <button onClick={() => {banMember(item.id)}} className={`btn  ${item.deleted ? 'btn-purple': 'btn-danger' }`}>{item.deleted ? 'Activate' : 'Ban' } </button>
                     </td>
                 </tr>
             )}

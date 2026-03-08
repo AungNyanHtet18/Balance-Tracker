@@ -140,7 +140,7 @@ function ListView({list} : {list: SubscriptionListItem[]}) {
                     <td>{item.paymentName}</td>
                     <td className="text-end">{item.paymentAmount}</td>
                     <td className="text-center">
-                        <Link className="icon-link" to={`/admin/subscriptions/${item.id.code}`}>
+                        <Link className="icon-link color-type" to={`/admin/subscriptions/${item.id.code}`}>
                             <i className="bi-arrow-right"></i>
                         </Link>
                     </td>

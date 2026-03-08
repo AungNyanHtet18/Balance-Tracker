@@ -9,4 +9,5 @@ import com.anh.balance.domain.entity.Subscription;
 public interface SubscriptionRepo extends BaseRepository<Subscription, SubscriptionPk>{
 
 	Optional<Subscription> findFirstByOrderByCreatedAt();
+	void deleteByIdMemberId(long memberId);
 }

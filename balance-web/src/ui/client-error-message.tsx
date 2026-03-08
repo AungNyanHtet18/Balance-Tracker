@@ -37,7 +37,7 @@ export default function ClientErrorMessage({anonymous} : {anonymous : boolean}) 
         if(error) {
             const status = error.status
 
-            if(!anonymous && (status === 401 || status === 408)) {
+            if(!anonymous && (status === 401 || status === 408)) { //408 = request timeout / 401 = invalid unauthorized
                 navigate('/')
                 return
             }
@@ -74,7 +74,7 @@ export default function ClientErrorMessage({anonymous} : {anonymous : boolean}) 
                     </div>
 
                     <div className="modal-footer">
-                        <button onClick={closeDialog} className="btn btn-secondary">
+                        <button onClick={closeDialog} className="btn btn-dark">
                             <i className="bi-check"></i> Close
                         </button>
                     </div>

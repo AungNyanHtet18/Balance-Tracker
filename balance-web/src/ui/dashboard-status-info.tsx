@@ -1,7 +1,7 @@
 export function DashboardStatusInfo({name, value, icon, bgColor, textColor} : {name:string, value?:number, icon:React.ReactNode, bgColor:string, textColor: string}) {
     return (
         <div className={`card w-100 ${textColor} ${bgColor} mb-4`}>
-            <div className="card-header">
+            <div className="card-header  border-bottom border-1">
                 <h5 className="card-title">{name}</h5>
             </div>
             <div className="card-body d-flex align-items-baseline justify-content-between">

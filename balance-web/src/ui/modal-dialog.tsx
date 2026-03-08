@@ -21,7 +21,7 @@ export default function ModalDialog({title, action, children} : {title : string,
 
     useEffect(() => {
         if(dialogRef.current) {
-            const modal = new bootstrap.Modal(dialogRef.current, {backdrop : 'static'})
+            const modal = new  bootstrap.Modal(dialogRef.current, {backdrop : 'static'})
             modalRef.current = modal
         }
     }, [dialogRef, modalRef])

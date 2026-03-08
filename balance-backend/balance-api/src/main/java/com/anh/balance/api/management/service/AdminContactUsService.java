@@ -1,5 +1,7 @@
 package com.anh.balance.api.management.service;
 
+import static com.anh.balance.common.utils.EntityOperations.safeCall;
+
 import java.util.function.Function;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -8,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.anh.balance.api.anonymous.output.ContactUsListItem;
 import com.anh.balance.api.management.input.ContactUsSearch;
+import com.anh.balance.common.dto.ModificationResult;
 import com.anh.balance.domain.PageResult;
 import com.anh.balance.domain.entity.ContactUs;
 import com.anh.balance.domain.entity.ContactUs_;
@@ -50,4 +53,14 @@ public class AdminContactUsService {
     		return cq;
     	 };
     }
+    
+    
+    
+	@Transactional
+	public ModificationResult<String> delete(long contactId) {
+		var contact = safeCall(contactUsRepo.findById(contactId),"Contact Us", contactId);
+	    contactUsRepo.deleteById(contact.getId());
+		
+	    return ModificationResult.success("Successfully Deleted!");
+	}
 }

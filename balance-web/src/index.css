@@ -24,9 +24,12 @@ body {
     width: 2.6rem;
 }
 
+.bg-purple{
+  background-color: var(--primary-color);
+}
 
 .color-type{ 
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 /*Navbar */

@@ -78,7 +78,7 @@ export default function PaymentMethods() {
                                 </td>
                                 <td>{item.payments}</td>
                                 <td className="text-center">
-                                    <Link to={`/admin/master/payment/${item.id}`} className="icon-link">
+                                    <Link to={`/admin/master/payment/${item.id}`} className="icon-link color-type">
                                         <i className="bi-arrow-right"></i>
                                     </Link>
                                 </td>

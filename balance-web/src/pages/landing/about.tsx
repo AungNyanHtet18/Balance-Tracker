@@ -99,9 +99,9 @@ export default function AboutUs() {
                             className="position-relative mx-auto rounded-circle d-flex align-items-center justify-content-center" 
                             style={{ width: "350px", height: "350px", background: "radial-gradient(circle, #f8f4ff 0%, #ffffff 70%)", boxShadow: "inset 0 0 50px rgba(153, 51, 255, 0.1), 0 20px 50px rgba(0,0,0,0.05)", border: "1px solid rgba(153, 51, 255, 0.1)" }}
                         >
-                             <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 40, ease: "linear" }} className="position-absolute w-100 h-100 rounded-circle" style={{ border: "2px dashed rgba(153, 51, 255, 0.2)" }}></motion.div>
+                             <motion.div animate={{ rotate: 360}} transition={{ repeat: Infinity, duration: 40, ease: "linear" }} className="position-absolute w-100 h-100 rounded-circle" style={{ border: "2px dashed rgba(153, 51, 255, 0.2)" }}></motion.div>
                              <div className="text-center z-index-1 position-relative">
-                                <h3 className="display-4 fw-bold mb-0" style={{ color: "#9933ff" }}>$2B+</h3>
+                                <h3 className="display-3 fw-bold mb-0" style={{ color: "#9933ff" }}>$2B+</h3>
                                 <p className="text-muted fw-semibold">Transactions Tracked</p>
                              </div>
                         </motion.div>

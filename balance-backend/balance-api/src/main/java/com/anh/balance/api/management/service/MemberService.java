@@ -12,6 +12,7 @@ import com.anh.balance.common.dto.ModificationResult;
 import com.anh.balance.domain.PageResult;
 import com.anh.balance.domain.entity.Member;
 import com.anh.balance.domain.repo.MemberRepo;
+import com.anh.balance.domain.repo.SubscriptionRepo;
 import com.anh.balance.domain.entity.Account_;
 import com.anh.balance.domain.entity.Member_;
 
@@ -26,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberService {
 	
 	private final MemberRepo memberRepo;
+	private final SubscriptionRepo subscriptionRepo;
 
 	public PageResult<MemberListItem> search(MemberSearch search, int page, int size) {
 		return memberRepo.search(queryFunc(search), countFunc(search), page, size);
@@ -60,5 +62,19 @@ public class MemberService {
 		member.getAccount().setDeleted(!deleted);
 		
 		return ModificationResult.success(!deleted);
+	}
+
+	@Transactional
+	public ModificationResult<String> delete(long memberId) {
+		var member = safeCall(memberRepo.findById(memberId), "Member", memberId);
+		
+		member.setSubscription(null);
+		memberRepo.save(member);
+		
+		subscriptionRepo.deleteByIdMemberId(memberId);
+		
+		memberRepo.delete(member);
+		
+		return ModificationResult.success("Successfully Deleted");
 	}
 }
