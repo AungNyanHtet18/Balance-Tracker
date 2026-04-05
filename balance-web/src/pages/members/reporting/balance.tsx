@@ -134,9 +134,9 @@ function ListView({list, viewMode} : {list : BalanceReportListItem[], viewMode: 
                     <th>Code</th>
                     <th>Ledger</th>
                     <th>Particular</th>
-                    <th>Debit</th>
-                    <th>Credit</th>
-                    <th>Balance</th>
+                    <th className="text-end">Debit</th>
+                    <th className="text-end">Credit</th>
+                    <th className="text-end">Balance</th>
                     <th></th>
                 </tr>
             </thead>

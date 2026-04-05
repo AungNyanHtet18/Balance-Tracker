@@ -99,7 +99,7 @@ function SubscriptionDetailsView({details, setStatus} : {details: SubscriptionDe
         <Page className="p-3 bg-light" title="Subscription Details" icon={<i className="bi-cart-plus"></i>} actions={
             details?.status == 'Pending' && 
             <div>
-                <button onClick={() => updateStatus('Approved')} type="button" className="btn btn-primary">
+                <button onClick={() => updateStatus('Approved')} type="button" className="btn btn-purple">
                     <i className="bi-check"></i> Approve
                 </button>
 

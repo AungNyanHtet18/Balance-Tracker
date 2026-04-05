@@ -11,6 +11,8 @@ import com.anh.balance.api.management.output.MemberListItem;
 import com.anh.balance.common.dto.ModificationResult;
 import com.anh.balance.domain.PageResult;
 import com.anh.balance.domain.entity.Member;
+import com.anh.balance.domain.repo.LedgerEntryRepo;
+import com.anh.balance.domain.repo.LedgerRepo;
 import com.anh.balance.domain.repo.MemberRepo;
 import com.anh.balance.domain.repo.SubscriptionRepo;
 import com.anh.balance.domain.entity.Account_;
@@ -28,6 +30,8 @@ public class MemberService {
 	
 	private final MemberRepo memberRepo;
 	private final SubscriptionRepo subscriptionRepo;
+	private final LedgerRepo ledgerRepo;
+	private final LedgerEntryRepo ledgerEntryRepo;
 
 	public PageResult<MemberListItem> search(MemberSearch search, int page, int size) {
 		return memberRepo.search(queryFunc(search), countFunc(search), page, size);
@@ -70,7 +74,10 @@ public class MemberService {
 		
 		member.setSubscription(null);
 		memberRepo.save(member);
+		ledgerEntryRepo.deleteByIdMemberId(memberId);
+		ledgerRepo.deleteByIdMemberId(memberId);
 		
+	
 		subscriptionRepo.deleteByIdMemberId(memberId);
 		
 		memberRepo.delete(member);

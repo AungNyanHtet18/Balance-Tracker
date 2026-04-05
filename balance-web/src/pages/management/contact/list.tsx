@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import type { ContactUsListItem, ContactUsSearch } from "../../../model/dto/management/contact"
-import { searchContact } from "../../../model/client/management/contact-client"
+import {deleteContact, searchContact } from "../../../model/client/management/contact-client"
 import Page from "../../../ui/page"
 import { useForm } from "react-hook-form"
 import type { PageResult } from "../../../model/dto"
@@ -14,12 +14,30 @@ export default function ContactUsManagement() {
     const [size, setSize] = useState(10)
     const [result, setResult] = useState<PageResult<ContactUsListItem>>({contents: []})
     const {contents, pager} = result
-    
+    const [searchForm, setSearchForm] = useState<ContactUsSearch>({ 
+        page: 0,
+        size: 10
+    })
+
     async function search(form: ContactUsSearch) {
          const response = await searchContact(form)
          if(response) {
              setResult(response)
+             setSearchForm(form)
          }
+    }
+
+    async function deleteContactUs(requestId: string) {
+         const response = await deleteContact(requestId)
+
+         if(response) {
+             console.log(response.message);
+             
+             const searchResponse = await searchContact(searchForm)
+             if(searchResponse) {
+                 setResult(searchResponse)
+             }
+          }
     }
 
     return (
@@ -27,7 +45,7 @@ export default function ContactUsManagement() {
            <SearchForm page={page} size={size} onSearch={search} />
 
             <section className="my-3">
-                <ListView list={contents} />
+                <ListView list={contents} deleteContactUs={deleteContactUs}/>
             </section>
             
             <Pagination pageChange={setPage} sizeChange={setSize} pager={pager} />
@@ -70,7 +88,7 @@ function SearchForm({page = 0, size= 10, onSearch} : {page: number, size: number
    )
 }
 
-function ListView({list} : {list: ContactUsListItem[]}) {
+function ListView({list, deleteContactUs} : {list: ContactUsListItem[], deleteContactUs : (requestId: string) => void} ) {
     
     if(!list.length) {
          return (
@@ -89,6 +107,8 @@ function ListView({list} : {list: ContactUsListItem[]}) {
                     <th>Phone</th>
                     <th>Message</th>
                     <th>Created At</th>
+                    <th className="text-center">Delete</th>
+                    
                 </tr>
             </thead>
 
@@ -101,6 +121,11 @@ function ListView({list} : {list: ContactUsListItem[]}) {
                         <td>{item.phone}</td>
                         <td>{item.message}</td>
                         <td>{item.createdAt}</td>
+                        <td>
+                            <button className="btn btn-danger" onClick={() => deleteContactUs(item.id.toString())}>
+                                <i className="bi bi-trash"></i>
+                            </button>
+                        </td>
                     </tr>
                 )}
             </tbody>

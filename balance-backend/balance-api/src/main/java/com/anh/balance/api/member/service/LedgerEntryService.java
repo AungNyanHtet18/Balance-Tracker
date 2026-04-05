@@ -8,10 +8,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.anh.balance.api.member.input.LedgerEntryForm;
 import com.anh.balance.api.member.input.LedgerEntrySearch;
 import com.anh.balance.api.member.output.LedgerEntryDetails;
@@ -34,7 +32,6 @@ import com.anh.balance.domain.repo.MemberRepo;
 import com.anh.balance.domain.service.LedgerEntryIdGenerator;
 import com.anh.balance.domain.embeddable.LedgerEntryPk_;
 import com.anh.balance.domain.entity.LedgerEntry_;
-
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import lombok.RequiredArgsConstructor;
@@ -201,5 +198,4 @@ public class LedgerEntryService {
 		});
 	}
 
-	
 }

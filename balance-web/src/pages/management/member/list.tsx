@@ -4,7 +4,7 @@ import Page from "../../../ui/page";
 import FormGroup from "../../../ui/form-group";
 import NoData from "../../../ui/no-data";
 import { useEffect, useRef, useState } from "react";
-import { banMemberWithId, searchMember } from "../../../model/client/management/member-client";
+import { banMemberWithId, deleteMemberWithId, searchMember } from "../../../model/client/management/member-client";
 import Pagination from "../../../ui/pagination";
 import { useManagementPlan } from "../../../model/provider/management-plan-context";
 import type { PageResult } from "../../../model/dto";
@@ -14,6 +14,11 @@ export default function MemberManagement() {
     const [result, setResult] = useState<PageResult<MemberListItem>>({contents: []})
     const [selectedPage, setSelectedPage] = useState(0)
     const [selectedSize, setSelectedSize] = useState(10)
+     const [searchForm, setSearchForm] = useState<MemberSearch>({ 
+            page: 0,
+            size: 10
+        })
+
 
     const {contents, pager} = result
 
@@ -26,6 +31,7 @@ export default function MemberManagement() {
 
         if(response) {
             setResult(response)
+            setSearchForm(form)
         }
     }
 
@@ -38,12 +44,26 @@ export default function MemberManagement() {
      }
 
 
+        async function deleteMember(requestId: string) {
+            const response = await deleteMemberWithId(requestId)
+    
+            if(response) {
+                console.log(response.message);
+                
+                const searchResponse = await searchMember(searchForm)
+                if(searchResponse) {
+                    setResult(searchResponse)
+                }
+            }
+        }
+
+
     return (
         <Page title="Member Management" icon={<i className="bi-people"></i>}>
             <SearchForm selectedPage={selectedPage} selectedSize={selectedSize} search={search} />
 
             <section className="my-3">
-                <ListView list={contents} banMember={banMember} />
+                <ListView list={contents} banMember={banMember} deleteMember={deleteMember} />
             </section> 
 
             <Pagination pager={pager} pageChange={setSelectedPage} sizeChange={setSelectedSize} />
@@ -96,7 +116,7 @@ function SearchForm({search, selectedPage, selectedSize} : {search:(form:MemberS
     )
 }
 
-function ListView({list, banMember} : {list : MemberListItem[], banMember: (id: number) => void}) {
+function ListView({list, banMember, deleteMember} : {list : MemberListItem[], banMember: (id: number) => void,  deleteMember : (requestId: string) => void}) {
 
     if(!list.length) {
         return (
@@ -114,6 +134,7 @@ function ListView({list, banMember} : {list : MemberListItem[], banMember: (id: 
                     <th>Phone</th>
                     <th>Email</th>
                     <th className="text-center">Ban Member</th>
+                    <th className="text-center">Delete Member</th>
                 </tr>
             </thead>
             <tbody>
@@ -128,6 +149,12 @@ function ListView({list, banMember} : {list : MemberListItem[], banMember: (id: 
                     <td className="text-center">
                         <button onClick={() => {banMember(item.id)}} className={`btn  ${item.deleted ? 'btn-purple': 'btn-danger' }`}>{item.deleted ? 'Activate' : 'Ban' } </button>
                     </td>
+                    <td className="text-center">
+                        <button className="btn btn-danger" onClick={() => deleteMember(item.id.toString())}>
+                            <i className="bi bi-trash"></i>
+                        </button>
+                    </td>
+
                 </tr>
             )}
             </tbody>

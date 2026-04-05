@@ -23,3 +23,8 @@ export async function updateEntry(requestId:unknown, form:LedgerEntryForm):ApiRe
     const response = await securedClient().put(`/member/${userName()}/entry/${requestId}`, form).catch(handleError)
     return response?.data
 }
+
+export async function deleteEntry(requestId: unknown):ApiResponse<ModificationResult<string>>{
+     const response = await securedClient().delete(`/member/${userName()}/entry/${requestId}`).catch(handleError)
+     return response?.data
+}

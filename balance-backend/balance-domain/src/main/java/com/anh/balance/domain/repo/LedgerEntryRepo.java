@@ -17,4 +17,6 @@ public interface LedgerEntryRepo extends BaseRepository<LedgerEntry, LedgerEntry
 	@Query("select min(e.issueAt) from LedgerEntry e where e.id.memberId = :memberId")
 	Optional<LocalDate> findStartEntry(long memberId);
 
+	void deleteByIdMemberId(long memberId);
+	
 }

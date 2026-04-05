@@ -64,5 +64,5 @@ public class LedgerEntryApi {
 			@RequestBody @Validated LedgerEntryForm form) {
 		return service.update(username, requestedId, form);
 	}
-	
+		
 }

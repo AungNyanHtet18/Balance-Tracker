@@ -10,5 +10,5 @@ public interface LedgerRepo extends BaseRepository<Ledger, LedgerPk>{
 
 	@Query("select count(l) from Ledger l where l.id.memberId = :id")
 	Long countForCheck(long id);
-
+	void deleteByIdMemberId(long memberId);
 }
