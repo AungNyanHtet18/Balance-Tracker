@@ -40,8 +40,8 @@ public record SubscriptionPlanListItem(
 			root.get(SubscriptionPlan_.monthlyEntry),
 			root.get(SubscriptionPlan_.defaultPlan),
 			root.get(SubscriptionPlan_.active),
-			cb.count(subscription.get(Subscription_.id).get(SubscriptionPk_.planId)),
-			cb.count(member.get(Member_.id))
+			cb.countDistinct(subscription.get(Subscription_.id).get(SubscriptionPk_.planId)),
+			cb.countDistinct(member.get(Member_.id))
 		);
 		
 		cq.groupBy(

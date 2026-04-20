@@ -11,6 +11,7 @@ import com.anh.balance.api.management.output.MemberListItem;
 import com.anh.balance.common.dto.ModificationResult;
 import com.anh.balance.domain.PageResult;
 import com.anh.balance.domain.entity.Member;
+import com.anh.balance.domain.repo.AccountRepo;
 import com.anh.balance.domain.repo.LedgerEntryRepo;
 import com.anh.balance.domain.repo.LedgerRepo;
 import com.anh.balance.domain.repo.MemberRepo;
@@ -30,6 +31,7 @@ public class MemberService {
 	
 	private final MemberRepo memberRepo;
 	private final SubscriptionRepo subscriptionRepo;
+	private final AccountRepo accountRepo;
 	private final LedgerRepo ledgerRepo;
 	private final LedgerEntryRepo ledgerEntryRepo;
 
@@ -71,16 +73,20 @@ public class MemberService {
 	@Transactional
 	public ModificationResult<String> delete(long memberId) {
 		var member = safeCall(memberRepo.findById(memberId), "Member", memberId);
+		var account = member.getAccount();
 		
 		member.setSubscription(null);
 		memberRepo.save(member);
 		ledgerEntryRepo.deleteByIdMemberId(memberId);
 		ledgerRepo.deleteByIdMemberId(memberId);
-		
 	
 		subscriptionRepo.deleteByIdMemberId(memberId);
-		
+			
 		memberRepo.delete(member);
+		
+		 if (account != null) {
+		        accountRepo.delete(account);
+		 }
 		
 		return ModificationResult.success("Successfully Deleted");
 	}

@@ -65,7 +65,7 @@ export default function MemberInfoEdit() {
                  <input ref={fileSelectRef} type="file" className="d-none" onChange={changeSelectedFile}/>
                  
                  <div className="col-7">
-                    <Card icon={<i className="bi bi-person-circle"></i>} title="Member Data">
+                    <Card icon={<i className="bi bi-person-circle"></i>} title="User Profile">
                          <FormGroup label="Email" className="mb-3">
                               <input type="text" readOnly={true} className="form-control" value={email} />
                          </FormGroup>
@@ -97,7 +97,7 @@ export default function MemberInfoEdit() {
                  </div>
 
                  <div className="col-4">
-                    <Card icon={<i className="bi bi-camera2"></i>} title="Member Data">
+                    <Card icon={<i className="bi bi-camera2"></i>} title="Image">
                        <MemberImage src={memberPhoto} />
 
                        <div className="mt-2">

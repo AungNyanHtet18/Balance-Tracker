@@ -68,7 +68,7 @@ export default function LedgerEntryEdit() {
 
     async function save(form: LedgerEntryForm) {
         const respose = query.get("id") ? await updateEntry(query.get("id"), form) : await createEntry(form)
-        if(respose && respose.id) {
+        if(respose && respose.id?.requestId) {
             navigate(`/member/balance/${respose.id.requestId}`)
         }
     }

@@ -115,7 +115,7 @@ function Navigation() {
                         <a onClick={e => {
                             e.preventDefault()
                             signOut()
-                        }} className="nav-link fw-semibold ">
+                        }} className="nav-link fw-semibold"  style={{ cursor: "pointer" }}>
                             <i className="bi-lock"></i> Sign Out
                         </a>
                     </li>

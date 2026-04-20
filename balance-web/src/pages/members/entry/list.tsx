@@ -6,7 +6,7 @@ import Loading from "../../../ui/loading";
 import Pagination from "../../../ui/pagination";
 import { useForm } from "react-hook-form";
 import type { LedgerEntryListItem, LedgerEntrySearch } from "../../../model/dto/member/ledger-entry";
-import { deleteEntry, searchEntry } from "../../../model/client/member/ledger-entry-client";
+import {searchEntry } from "../../../model/client/member/ledger-entry-client";
 import NoData from "../../../ui/no-data";
 import FormGroup from "../../../ui/form-group";
 import { useMemberLedgerContext } from "../../../model/provider/member-ledger-context";
@@ -20,11 +20,13 @@ export default function LedgerEntryManagement() {
     const [page, setPage] = useState(0)
     const [size, setSize] = useState(10)
     const [result, setResult] = useState<PageResult<LedgerEntryListItem>>({contents: []})
-    const [searchForm, setSearchForm] = useState<LedgerEntrySearch>({
-        type: params.type == 'credit' ? "Credit" : "Debit",
-        page: 0,
-        size: 10
-    })
+
+    // const [searchForm, setSearchForm] = useState<LedgerEntrySearch>({
+    //     type: params.type == 'credit' ? "Credit" : "Debit",
+    //     page: 0,
+    //     size: 10
+    // })
+ 
     const {contents, pager} = result
     const [viewMode, setViewMode] = useState<'table' | 'card'>('card')
 
@@ -42,23 +44,10 @@ export default function LedgerEntryManagement() {
         const response = await searchEntry(form)
         if(response) {
             setResult(response)
-            setSearchForm(form)
+            //setSearchForm(form)
         }
     }
 
-    async function deleteLedgerEntry(requestId: string) { 
-       const response = await deleteEntry(requestId)
-       
-       if(response) {
-         console.log(response.message);
-            const searchResponse = await searchEntry(searchForm)
-            if(searchResponse) {
-                setResult(searchResponse)
-            }
-       }
-
-
-    }
 
     return (
         <Page icon={icon} title={`${ledgerType} Management`} actions={
@@ -77,7 +66,7 @@ export default function LedgerEntryManagement() {
 
             <section className="my-3">
 
-                <ListView list={contents} viewMode={viewMode} deleteLedgerEntry={deleteLedgerEntry} />
+                <ListView list={contents} viewMode={viewMode} />
             </section>
 
             <Pagination pageChange={setPage} sizeChange={setSize} pager={pager} />
@@ -136,7 +125,7 @@ function SearchForm({type, page, size, onSearch} : {type: LedgerType, page : num
     )
 }
 
-function ListView({list, viewMode, deleteLedgerEntry} : {list : LedgerEntryListItem[], viewMode: 'table' | 'card', deleteLedgerEntry : (requestId: string) => void}) {
+function ListView({list, viewMode} : {list : LedgerEntryListItem[], viewMode: 'table' | 'card'}) {
 
     if(!list.length) {
         return (
@@ -180,7 +169,6 @@ function ListView({list, viewMode, deleteLedgerEntry} : {list : LedgerEntryListI
                     <th>Ledger</th>
                     <th>Particular</th>
                     <th className="text-end">Amount</th>
-                    <th className="text-center">Delete</th>
                     <th></th>
                 </tr>
             </thead>
@@ -193,11 +181,7 @@ function ListView({list, viewMode, deleteLedgerEntry} : {list : LedgerEntryListI
                     <td>{item.ledgerName}</td>
                     <td>{item.particular}</td>
                     <td className="text-end">{item.amount.toLocaleString()}</td>
-                    <td className="text-center">
-                        <button className="btn btn-danger" onClick={() => {deleteLedgerEntry(item.id.requestId)}}>
-                            <i className="bi bi-trash"></i>
-                        </button>
-                    </td>
+
                     <td className="text-center">
                         <Link to={`/member/balance/${item.id.requestId}`} className="icon-link color-type mt-2">
                             <i className="bi-arrow-right"></i>
