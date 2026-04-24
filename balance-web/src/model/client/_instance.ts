@@ -29,20 +29,19 @@ export function securedClient() {
         return response
     }, async (error) => {
 
-        const originalRequest = error.config
+        const originalRequest = error.config as typeof error.config & {_retry?: boolean}
         const {auth, setAuth} = authStore.getState()
+        const status = error?.response?.status ?? error?.status
 
-        if(error.status == 408 && !originalRequest._retry) {
+        if((status == 408 || status == 401) && originalRequest && !originalRequest._retry) {
             originalRequest._retry = true
             
             // Refresh token
             const refreshResult = await refreshToken(auth?.refreshToken || '')
             setAuth(refreshResult)
 
-            // Retry last request
-            instance(originalRequest)
-
-            return
+            // Retry last request and return its response to the caller.
+            return instance(originalRequest)
         }
 
         return Promise.reject(error)
